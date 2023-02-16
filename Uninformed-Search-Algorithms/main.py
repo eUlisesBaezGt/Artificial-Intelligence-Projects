@@ -4,8 +4,6 @@ import breadth
 # import dijkstra
 # import iterative_depth
 import limited_depth
-
-
 # import two_way
 
 
@@ -28,11 +26,11 @@ def main():
     # CHECK IF ALL VALUES OF WEIGHTS1 LIST ARE EQUAL
     for i in range(len(weights1)):
         if weights1[i] != weights1[0]:
-            print("The graph 1 is not weighted")
-            weight1 = False
+            print("The graph 1 is weighted")
             break
         if i == len(weights1) - 1:
-            print("The graph 1 is weighted")
+            print("The graph 1 is not weighted")
+            weight1 = False
 
     # IF GRAPH1 IS NOT WEIGHTED, ONLY RUN BREADTH FIRST SEARCH
     if not weight1:
@@ -62,11 +60,11 @@ def main():
     # CHECK IF ALL VALUES OF WEIGHTS2 LIST ARE EQUAL
     for i in range(len(weights2)):
         if weights2[i] != weights2[0]:
-            print("The graph 2 is not weighted")
-            weight2 = False
+            print("The graph 2 is weighted")
             break
         if i == len(weights2) - 1:
-            print("The graph 2 is weighted")
+            print("The graph 2 is not weighted")
+            weight2 = False
 
     # IF GRAPH2 IS NOT WEIGHTED, ONLY RUN BREADTH FIRST SEARCH
     if not weight2:
