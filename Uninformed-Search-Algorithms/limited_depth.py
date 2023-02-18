@@ -1,7 +1,4 @@
-import functions as f
-
-
-def limited_depth_search(graph, origin, destiny, limit=9):
+def limited_depth_search(graph, origin, destiny, limit):
     if origin == destiny:
         return [origin]
     if limit == 0:
@@ -13,14 +10,11 @@ def limited_depth_search(graph, origin, destiny, limit=9):
     return None
 
 
-def run(graph):
+def run(graph, origin, destiny, runner):
     print("\n\nLimited Depth Search:\n---------------------")
-    print("Origin: ", end="")
-    origin = input().title()
-    runner = f.check_origin(graph, origin)
-    print("Destiny: ", end="")
-    destiny = input().title()
-    runner = f.check_destiny(graph, destiny)
+    limit = int(input("Limit: "))
     if runner:
-        path = limited_depth_search(graph, origin, destiny)
-        f.show_path(path, origin, destiny)
+        path = limited_depth_search(graph, origin, destiny, limit)
+        return path
+
+    # ASK: IF GIVEN LIMIT

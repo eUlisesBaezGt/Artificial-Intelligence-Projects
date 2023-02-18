@@ -1,6 +1,3 @@
-import functions as f
-
-
 def depth_first_search(graph, origin, destiny, path=None):
     if path is None:
         path = []
@@ -19,15 +16,8 @@ def depth_first_search(graph, origin, destiny, path=None):
     return None
 
 
-def run(graph):
-    runner = True
+def run(graph, origin, destiny, runner):
     print("\n\nDepth First Search:\n---------------------")
-    print("Origin: ", end="")
-    origin = input().title()
-    runner = f.check_origin(graph, origin)
-    print("Destiny: ", end="")
-    destiny = input().title()
-    runner = f.check_destiny(graph, destiny)
     if runner:
         path = depth_first_search(graph, origin, destiny)
-        f.show_path(path, origin, destiny)
+        return path

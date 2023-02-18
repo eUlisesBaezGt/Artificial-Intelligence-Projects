@@ -1,6 +1,3 @@
-import functions as f
-
-
 def dijkstra(graph, origin, destiny):
     distances = {node: float('inf') for node in graph}
     distances[origin] = 0
@@ -43,14 +40,10 @@ def dijkstra(graph, origin, destiny):
     return path, distances[destiny]
 
 
-def run(graph):
+def run(graph, origin, destiny, runner):
     print("\n\nDijkstra's algorithm:\n---------------------")
-    print("Origin: ", end="")
-    origin = input().title()
-    runner = f.check_origin(graph, origin)
-    print("Destiny: ", end="")
-    destiny = input().title()
-    runner = f.check_destiny(graph, destiny)
     if runner:
         path = dijkstra(graph, origin, destiny)
-        f.show_path(path, origin, destiny)
+        return path
+
+    # CHECK: IF RETURNS COST

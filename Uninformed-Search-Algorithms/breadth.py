@@ -1,6 +1,3 @@
-import functions as f
-
-
 def breadth_first_search(graph, origin, destiny):
     queue = [[origin]]
     while queue:
@@ -15,15 +12,8 @@ def breadth_first_search(graph, origin, destiny):
     return None
 
 
-def run(graph):
-    runner = True
+def run(graph, origin, destiny, runner):
     print("\n\nBreadth First Search:\n---------------------")
-    print("Origin: ", end="")
-    origin = input().title()
-    runner = f.check_origin(graph, origin)
-    print("Destiny: ", end="")
-    destiny = input().title()
-    runner = f.check_destiny(graph, destiny)
     if runner:
         path = breadth_first_search(graph, origin, destiny)
-        f.show_path(path, origin, destiny)
+        return path
