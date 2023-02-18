@@ -11,3 +11,17 @@ def show_path(path, origin, destiny):
                 print(path[i], end=" -> ")
     else:
         print("No path found")
+
+
+def check_origin(graph, origin):
+    if origin not in graph.content:
+        print("Origin not found.")
+        return False
+    return True
+
+
+def check_destiny(graph, destiny):
+    if destiny not in graph.content:
+        print("Destiny not found.")
+        return False
+    return True

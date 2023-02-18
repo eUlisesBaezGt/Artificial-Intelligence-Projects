@@ -16,10 +16,14 @@ def breadth_first_search(graph, origin, destiny):
 
 
 def run(graph):
+    runner = True
     print("\n\nBreadth First Search:\n---------------------")
     print("Origin: ", end="")
-    origin = input()
+    origin = input().title()
+    runner = f.check_origin(graph, origin)
     print("Destiny: ", end="")
-    destiny = input()
-    path = breadth_first_search(graph, origin, destiny)
-    f.show_path(path, origin, destiny)
+    destiny = input().title()
+    runner = f.check_destiny(graph, destiny)
+    if runner:
+        path = breadth_first_search(graph, origin, destiny)
+        f.show_path(path, origin, destiny)

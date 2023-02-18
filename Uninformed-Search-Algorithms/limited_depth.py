@@ -16,8 +16,11 @@ def limited_depth_search(graph, origin, destiny, limit=9):
 def run(graph):
     print("\n\nLimited Depth Search:\n---------------------")
     print("Origin: ", end="")
-    origin = input()
+    origin = input().title()
+    runner = f.check_origin(graph, origin)
     print("Destiny: ", end="")
-    destiny = input()
-    path = limited_depth_search(graph, origin, destiny)
-    f.show_path(path, origin, destiny)
+    destiny = input().title()
+    runner = f.check_destiny(graph, destiny)
+    if runner:
+        path = limited_depth_search(graph, origin, destiny)
+        f.show_path(path, origin, destiny)
