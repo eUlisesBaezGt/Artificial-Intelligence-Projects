@@ -27,7 +27,7 @@ def dijkstra(graph, origin, destiny):
                 shortest_paths[neighbor] = current_node
 
     if distances[destiny] == float('inf'):
-        return None
+        return None, None
 
     path = []
     node = destiny
@@ -37,7 +37,11 @@ def dijkstra(graph, origin, destiny):
     path.append(origin)
     path.reverse()
 
-    return path, distances[destiny]
+    if path:
+        return path, distances[destiny]
+    else:
+        print("No path found.")
+        return None, None
 
 
 def run(graph, origin, destiny, runner):

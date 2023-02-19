@@ -8,7 +8,7 @@ import limited_depth
 import depth
 import dijkstra
 import iterative_depth
-import two_way
+import bidirectional
 
 
 def main():
@@ -46,7 +46,13 @@ def main():
     runner2 = f.check_destiny(graph, destiny2)
 
     runner = runner1 and runner2
-    reached = False
+
+    breadth_reached = False
+    limited_reached = False
+    depth_reached = False
+    iterative_reached = False
+    djikstra_limited_reached = False
+    bidirectional_reached = False
 
     origin = string.capwords(origin).translate({ord(c): None for c in string.whitespace})
     destiny = string.capwords(destiny).translate({ord(c): None for c in string.whitespace})
@@ -58,6 +64,8 @@ def main():
     ftime = t.default_timer()
     times.append(ftime - stime)
     f.show_path(path)
+    if path:
+        breadth_reached = True
 
     if weighted and runner:
         limit = int(input("\nEnter the limit: "))
@@ -67,61 +75,93 @@ def main():
         times.append(ftime - stime)
         f.show_path(path)
         if path:
-            reached = True
+            limited_reached = True
 
         stime = t.default_timer()
         path = depth.run(graph, origin, destiny, runner)
         ftime = t.default_timer()
         times.append(ftime - stime)
         f.show_path(path)
+        if path:
+            depth_reached = True
 
         stime = t.default_timer()
         path = iterative_depth.run(graph, origin, destiny, runner)
         ftime = t.default_timer()
         times.append(ftime - stime)
         f.show_path(path)
+        if path:
+            iterative_reached = True
 
         stime = t.default_timer()
         path, weight = dijkstra.run(graph, origin, destiny, runner)
         ftime = t.default_timer()
         times.append(ftime - stime)
         f.show_path_dijkstra(path, weight)  # CRASHES IF OPPOSITE DIRECTION
+        if path:
+            djikstra_limited_reached = True
 
         stime = t.default_timer()
-        path = two_way.run(graph, origin, destiny, runner)
+        path = bidirectional.run(graph, origin, destiny, runner)
         ftime = t.default_timer()
         times.append(ftime - stime)
-        f.show_path(path)  # REACHES IN OPPOSITE DIRECTION
+        f.show_path(path)
+        if path:
+            bidirectional_reached = True
 
     if runner:
         print("\n\nEXECUTION TIMES:\n----------------")
         if times:
-            print("Breadth First Search: ", times[0])
+            if breadth_reached:
+                print("Breadth First Search: ", times[0])
         if weighted and times:
-            if reached:
+            if limited_reached:
                 print("Limited Depth First Search: ", times[1])
             else:
                 print("Limited Depth First Search: No path found.")
                 times[1] = 999999999999
-            print("Depth First Search: ", times[2])
-            print("Iterative Depth Search: ", times[3])
-            print("Dijkstra: ", times[4])
-            print("Two Way Search: ", times[5])
 
-            best = min(times)
-            print("\nBest time: ", best)
-            if best == times[0]:
-                print("Breadth First Search is the best option")
-            elif best == times[1] and reached:
-                print("Limited Depth First Search is the best option")
-            elif best == times[2]:
-                print("Depth First Search is the best option")
-            elif best == times[3]:
-                print("Iterative Depth Search is the best option")
-            elif best == times[4]:
-                print("Dijkstra is the best option")
-            elif best == times[5]:
-                print("Two Way Search is the best option")
+            if depth_reached:
+                print("Depth First Search: ", times[2])
+            else:
+                print("Depth First Search: No path found.")
+                times[2] = 999999999999
+
+            if iterative_reached:
+                print("Iterative Depth Search: ", times[3])
+            else:
+                print("Iterative Depth Search: No path found.")
+                times[3] = 999999999999
+            if djikstra_limited_reached:
+                print("Dijkstra: ", times[4])
+            else:
+                print("Dijkstra: No path found.")
+                times[4] = 999999999999
+
+            if bidirectional_reached:
+                print("Two Way Search: ", times[5])
+            else:
+                print("Two Way Search: No path found.")
+                times[5] = 999999999999
+
+            if times[1] == 999999999999 and times[2] == 999999999999 and times[3] == 999999999999 and \
+                    times[4] == 999999999999 and times[5] == 999999999999:
+                exit()
+            else:
+                best = min(times)
+                print("\nBest time: ", best)
+                if best == times[0]:
+                    print("Breadth First Search is the best option")
+                elif best == times[1] and limited_reached:
+                    print("Limited Depth First Search is the best option")
+                elif best == times[2]:
+                    print("Depth First Search is the best option")
+                elif best == times[3]:
+                    print("Iterative Depth Search is the best option")
+                elif best == times[4]:
+                    print("Dijkstra is the best option")
+                elif best == times[5]:
+                    print("Two Way Search is the best option")
 
 
 if __name__ == "__main__":

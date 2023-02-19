@@ -5,9 +5,9 @@ def breadth_first_search(graph, origin, destiny):
         node = path[-1]
         if node == destiny:
             return path
-        for adjacent in graph.content[node]:
+        for neighbor in graph.content[node]:
             new_path = list(path)
-            new_path.append(adjacent[0])
+            new_path.append(neighbor[0])
             queue.append(new_path)
     return None
 
