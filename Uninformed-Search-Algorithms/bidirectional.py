@@ -3,10 +3,13 @@ import breadth as b
 
 def bidirectional(graph, origin, destiny):
     departure = True
+    arrival = True
     if not b.breadth_first_search(graph, origin, destiny):
         departure = False
+    if not b.breadth_first_search(graph, destiny, origin):
+        arrival = False
 
-    if departure:
+    if departure and arrival:
         queue1 = [[origin]]
         queue2 = [[destiny]]
         while queue1 and queue2:
@@ -27,6 +30,7 @@ def bidirectional(graph, origin, destiny):
                 new_path.append(neighbor[0])
                 queue2.append(new_path)
     else:
+        print("CHECK GRAPH PLEASE, NOT BI-DIRECTIONAL GRAPH")
         return None
 
 
