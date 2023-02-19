@@ -1,21 +1,12 @@
+import limited_depth as ld
+
+
 def iterative_depth(graph, start, goal):
     for depth in range(len(graph.content)):
-        path = depth_limited_search(graph, start, goal, depth)
+        path = ld.limited_depth_search(graph, start, goal, depth)
         if path:
-            print("Path found at depth: ", depth)
+            print("Path found at DEPTH: ", depth)
             return path
-    return None
-
-
-def depth_limited_search(graph, origin, destiny, limit):
-    if origin == destiny:
-        return [origin]
-    if limit == 0:
-        return None
-    for node in graph.content[origin]:
-        path = depth_limited_search(graph, node[0], destiny, limit - 1)
-        if path:
-            return [origin] + path
     return None
 
 
