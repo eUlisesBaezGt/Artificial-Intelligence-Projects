@@ -1,4 +1,5 @@
 import functions as f
+import timeit as t
 
 from Graph import *
 import breadth
@@ -14,6 +15,7 @@ import dijkstra
 def main():
     weighted = True
     weights = []
+    times = []
 
     # filename = "weighted_graph.txt"
     filename = "non_weighted_graph.txt"
@@ -49,20 +51,35 @@ def main():
 
     # IF GRAPH IS NOT WEIGHTED, ONLY RUN BREADTH FIRST SEARCH
     if not weighted:
+        stime = t.default_timer()
         path = breadth.run(graph, origin, destiny, runner)
+        ftime = t.default_timer()
+        times.append(ftime-stime)
         f.show_path(path, origin, destiny)
     # IF GRAPH IS WEIGHTED, RUN ALL ALGORITHMS
     else:
+        stime = t.default_timer()
         path = breadth.run(graph, origin, destiny, runner)
+        ftime = t.default_timer()
+        times.append(ftime-stime)
         f.show_path(path, origin, destiny)
-
+        
+        stime = t.default_timer()
         path = limited_depth.run(graph, origin, destiny, runner)
+        ftime = t.default_timer()
+        times.append(ftime-stime)
         f.show_path(path, origin, destiny)
-
+        
+        stime = t.default_timer()
         path = depth.run(graph, origin, destiny, runner)
+        ftime = t.default_timer()
+        times.append(ftime-stime)
         f.show_path(path, origin, destiny)
 
+        stime = t.default_timer()
         path = dijkstra.run(graph, origin, destiny, runner)
+        ftime = t.default_timer()
+        times.append(ftime-stime)
         f.show_path(path, origin, destiny)
 
 
