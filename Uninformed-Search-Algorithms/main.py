@@ -48,6 +48,7 @@ def main():
     runner2 = f.check_destiny(graph, destiny2)
 
     runner = runner1 and runner2
+    reached = False
 
     origin = string.capwords(origin).translate({ord(c): None for c in string.whitespace})
     destiny = string.capwords(destiny).translate({ord(c): None for c in string.whitespace})
@@ -74,6 +75,8 @@ def main():
         ftime = t.default_timer()
         times.append(ftime - stime)
         f.show_path(path, origin, destiny)
+        if path:
+            reached = True
 
         # stime = t.default_timer()
         # path = depth.run(graph, origin, destiny, runner)
@@ -92,15 +95,20 @@ def main():
         if times:
             print("Breadth First Search: ", times[0])
         if weighted and times:
-            print("Limited Depth First Search: ", times[1])
+            if reached:
+                print("Limited Depth First Search: ", times[1])
             # print("Depth First Search: ", times[2])
             # print("Dijkstra's Algorithm: ", times[3])
+            else:
+                print("Limited Depth First Search: No path found.")
+                # DELETE times[1]
+                times.pop(1)
 
             best = min(times)
             print("\nBest time: ", best)
             if best == times[0]:
                 print("Breadth First Search is the best option")
-            elif best == times[1]:
+            elif best == times[1] and reached:
                 print("Limited Depth First Search is the best option")
             # elif best == times[2]:
             #     print("Depth First Search is the best option")
