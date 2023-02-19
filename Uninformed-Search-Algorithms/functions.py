@@ -8,6 +8,18 @@ def show_path(path):
                 print(path[i], end=" -> ")
 
 
+def show_path_dijkstra(path, weight):
+    if path:
+        print("PATH FOUND:")
+        for i in range(len(path)):
+            if i == len(path) - 1:
+                print(path[i])
+            else:
+                print(path[i], end=" -> ")
+
+        print("TOTAL WEIGHT: ", weight)
+
+
 def nodes_list(graph):
     nodes = []
     for node in graph.content:

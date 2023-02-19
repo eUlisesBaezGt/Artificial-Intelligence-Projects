@@ -8,9 +8,7 @@ import limited_depth
 import depth
 import dijkstra
 import iterative_depth
-
-
-# import two_way
+import two_way
 
 
 def main():
@@ -71,20 +69,26 @@ def main():
         if path:
             reached = True
 
-        # stime = t.default_timer()
-        # path = depth.run(graph, origin, destiny, runner)
-        # ftime = t.default_timer()
-        # times.append(ftime - stime)
-        # f.show_path(path, origin, destiny)
-
-        # stime = t.default_timer()
-        # path = dijkstra.run(graph, origin, destiny, runner)
-        # ftime = t.default_timer()
-        # times.append(ftime - stime)
-        # f.show_path(path, origin, destiny)
+        stime = t.default_timer()
+        path = depth.run(graph, origin, destiny, runner)
+        ftime = t.default_timer()
+        times.append(ftime - stime)
+        f.show_path(path)
 
         stime = t.default_timer()
         path = iterative_depth.run(graph, origin, destiny, runner)
+        ftime = t.default_timer()
+        times.append(ftime - stime)
+        f.show_path(path)
+
+        stime = t.default_timer()
+        path, weight = dijkstra.run(graph, origin, destiny, runner)
+        ftime = t.default_timer()
+        times.append(ftime - stime)
+        f.show_path_dijkstra(path, weight)
+
+        stime = t.default_timer()
+        path = two_way.run(graph, origin, destiny, runner)
         ftime = t.default_timer()
         times.append(ftime - stime)
         f.show_path(path)
@@ -98,10 +102,11 @@ def main():
                 print("Limited Depth First Search: ", times[1])
             else:
                 print("Limited Depth First Search: No path found.")
-                times.pop(1)
-            print("Iterative Depth Search: ", times[2])
-            # print("Depth First Search: ", times[2])
-            # print("Dijkstra's Algorithm: ", times[3])
+                times[1] = 999999999999
+            print("Depth First Search: ", times[2])
+            print("Iterative Depth Search: ", times[3])
+            print("Dijkstra: ", times[4])
+            print("Two Way Search: ", times[5])
 
             best = min(times)
             print("\nBest time: ", best)
@@ -110,9 +115,13 @@ def main():
             elif best == times[1] and reached:
                 print("Limited Depth First Search is the best option")
             elif best == times[2]:
+                print("Depth First Search is the best option")
+            elif best == times[3]:
                 print("Iterative Depth Search is the best option")
-            # elif best == times[3]:
-            #     print("Dijkstra's Algorithm is the best option")
+            elif best == times[4]:
+                print("Dijkstra is the best option")
+            elif best == times[5]:
+                print("Two Way Search is the best option")
 
 
 if __name__ == "__main__":

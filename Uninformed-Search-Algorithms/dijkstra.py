@@ -20,7 +20,7 @@ def dijkstra(graph, origin, destiny):
         if current_node not in visited:
             visited.append(current_node)
 
-        for neighbor, weight in graph[current_node]:
+        for neighbor, weight in graph.content[current_node]:
             distance = int(current_distance) + int(weight)
             if distance < distances[neighbor]:
                 distances[neighbor] = distance
@@ -50,4 +50,3 @@ def run(graph, origin, destiny, runner):
             print("No path found.")
             return None, None
 
-    # CHECK: IF RETURNS COST
