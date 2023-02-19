@@ -77,7 +77,7 @@ def main():
         f.show_path(path, origin, destiny)
 
         stime = t.default_timer()
-        path = dijkstra.run(graph, origin, destiny, runner)
+        path, weight = dijkstra.run(graph, origin, destiny, runner)
         ftime = t.default_timer()
         times.append(ftime-stime)
         f.show_path(path, origin, destiny)
