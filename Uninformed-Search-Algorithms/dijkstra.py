@@ -1,15 +1,15 @@
 def dijkstra(graph, origin, destiny):
-    distances = {node: float('inf') for node in graph}
+    distances = {node: float('inf') for node in graph.content}
     distances[origin] = 0
 
     visited = []
 
     shortest_paths = {}
 
-    while len(visited) != len(graph):
+    while len(visited) != len(graph.content):
         current_node = None
         current_distance = float('inf')
-        for node in graph:
+        for node in graph.content:
             if distances[node] < current_distance and node not in visited:
                 current_node = node
                 current_distance = distances[node]
