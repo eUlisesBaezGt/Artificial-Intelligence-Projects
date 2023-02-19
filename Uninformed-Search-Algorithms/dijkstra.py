@@ -41,9 +41,13 @@ def dijkstra(graph, origin, destiny):
 
 
 def run(graph, origin, destiny, runner):
-    print("\n\nDijkstra's algorithm:\n---------------------")
     if runner:
+        print("\n\nDijkstra:\n---------------------")
         path, weight = dijkstra(graph, origin, destiny)
-        return path, weight
+        if path:
+            return path, weight
+        else:
+            print("No path found.")
+            return None, None
 
     # CHECK: IF RETURNS COST

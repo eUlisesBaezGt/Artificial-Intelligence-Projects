@@ -13,7 +13,11 @@ def breadth_first_search(graph, origin, destiny):
 
 
 def run(graph, origin, destiny, runner):
-    print("\n\nBreadth First Search:\n---------------------")
     if runner:
+        print("\n\nBreadth First Search:\n---------------------")
         path = breadth_first_search(graph, origin, destiny)
-        return path
+        if path:
+            return path
+        else:
+            print("No path found.")
+            return None

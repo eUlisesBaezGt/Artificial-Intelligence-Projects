@@ -10,11 +10,12 @@ def limited_depth_search(graph, origin, destiny, limit):
     return None
 
 
-def run(graph, origin, destiny, runner):
-    print("\n\nLimited Depth Search:\n---------------------")
-    limit = int(input("Limit: "))
+def run(graph, origin, destiny, runner, limit):
     if runner:
+        print("\n\nLimited Depth Search:\n---------------------")
         path = limited_depth_search(graph, origin, destiny, limit)
-        return path
-
-    # ASK: IF GIVEN LIMIT
+        if path:
+            return path
+        else:
+            print("No path found.")
+            return None

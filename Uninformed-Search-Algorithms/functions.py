@@ -1,27 +1,32 @@
 def show_path(path, origin, destiny):
-    print("\n\nRESULTS:\n--------")
-    print("FROM:", origin)
-    print("TO:", destiny)
-    print("\nPATH FOUND:")
+    print("PATH FOUND:")
     if path:
         for i in range(len(path)):
             if i == len(path) - 1:
                 print(path[i])
             else:
                 print(path[i], end=" -> ")
-    else:
-        print("No path found")
+
+
+def nodes_list(graph):
+    nodes = []
+    for node in graph.content:
+        if node not in nodes:
+            nodes.append(node.upper())
+    return nodes
 
 
 def check_origin(graph, origin):
-    if origin not in graph.content:
+    nodes = nodes_list(graph)
+    if origin.upper() not in nodes:
         print("Origin not found.")
         return False
     return True
 
 
 def check_destiny(graph, destiny):
-    if destiny not in graph.content:
+    nodes = nodes_list(graph)
+    if destiny.upper() not in nodes:
         print("Destiny not found.")
         return False
     return True

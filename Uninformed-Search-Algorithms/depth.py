@@ -17,7 +17,11 @@ def depth_first_search(graph, origin, destiny, path=None):
 
 
 def run(graph, origin, destiny, runner):
-    print("\n\nDepth First Search:\n---------------------")
     if runner:
+        print("\n\nDepth First Search:\n---------------------")
         path = depth_first_search(graph, origin, destiny)
-        return path
+        if path:
+            return path
+        else:
+            print("No path found.")
+            return None
