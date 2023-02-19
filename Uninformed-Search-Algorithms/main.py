@@ -78,6 +78,7 @@ def main():
 
         stime = t.default_timer()
         path, weight = dijkstra.run(graph, origin, destiny, runner)
+        # CHECK: SPECIAL PRINT
         ftime = t.default_timer()
         times.append(ftime-stime)
         f.show_path(path, origin, destiny)
