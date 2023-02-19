@@ -7,7 +7,7 @@ def depth_first_search(graph, origin, destiny, path=None):
     if origin == destiny:
         return path
 
-    for neighbor in graph[origin]:
+    for neighbor in graph.content[origin]:
         neighbor = neighbor[0]
         if neighbor not in path:
             new_path = depth_first_search(graph, neighbor, destiny, path.copy())
