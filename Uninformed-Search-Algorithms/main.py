@@ -7,9 +7,9 @@ import breadth
 import limited_depth
 import depth
 import dijkstra
+import iterative_depth
 
 
-# import iterative_depth
 # import two_way
 
 
@@ -83,6 +83,12 @@ def main():
         # times.append(ftime - stime)
         # f.show_path(path, origin, destiny)
 
+        stime = t.default_timer()
+        path = iterative_depth.run(graph, origin, destiny, runner)
+        ftime = t.default_timer()
+        times.append(ftime - stime)
+        f.show_path(path)
+
     if runner:
         print("\n\nEXECUTION TIMES:\n----------------")
         if times:
@@ -90,12 +96,12 @@ def main():
         if weighted and times:
             if reached:
                 print("Limited Depth First Search: ", times[1])
-            # print("Depth First Search: ", times[2])
-            # print("Dijkstra's Algorithm: ", times[3])
             else:
                 print("Limited Depth First Search: No path found.")
-                # DELETE times[1]
                 times.pop(1)
+            print("Iterative Depth Search: ", times[2])
+            # print("Depth First Search: ", times[2])
+            # print("Dijkstra's Algorithm: ", times[3])
 
             best = min(times)
             print("\nBest time: ", best)
@@ -103,8 +109,8 @@ def main():
                 print("Breadth First Search is the best option")
             elif best == times[1] and reached:
                 print("Limited Depth First Search is the best option")
-            # elif best == times[2]:
-            #     print("Depth First Search is the best option")
+            elif best == times[2]:
+                print("Iterative Depth Search is the best option")
             # elif best == times[3]:
             #     print("Dijkstra's Algorithm is the best option")
 
