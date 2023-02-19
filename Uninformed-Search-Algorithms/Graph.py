@@ -15,3 +15,4 @@ class Graph:
         print("ORIGIN -> [(DESTINY, WEIGHT), ...]")
         for origin, destiny in self.content.items():
             print(f"{origin} -> {destiny}")
+        print("\n")

@@ -55,26 +55,19 @@ def main():
 
     graph.view_all()
 
-    if not weighted and runner:
-        stime = t.default_timer()
-        path = breadth.run(graph, origin, destiny, runner)
-        ftime = t.default_timer()
-        times.append(ftime - stime)
-        f.show_path(path, origin, destiny)
+    stime = t.default_timer()
+    path = breadth.run(graph, origin, destiny, runner)
+    ftime = t.default_timer()
+    times.append(ftime - stime)
+    f.show_path(path)
 
-    elif weighted and runner:
-        stime = t.default_timer()
-        path = breadth.run(graph, origin, destiny, runner)
-        ftime = t.default_timer()
-        times.append(ftime - stime)
-        f.show_path(path, origin, destiny)
-
+    if weighted and runner:
         limit = int(input("\nEnter the limit: "))
         stime = t.default_timer()
         path = limited_depth.run(graph, origin, destiny, runner, limit)
         ftime = t.default_timer()
         times.append(ftime - stime)
-        f.show_path(path, origin, destiny)
+        f.show_path(path)
         if path:
             reached = True
 

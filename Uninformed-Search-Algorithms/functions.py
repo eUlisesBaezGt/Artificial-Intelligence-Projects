@@ -1,6 +1,6 @@
-def show_path(path, origin, destiny):
-    print("PATH FOUND:")
+def show_path(path):
     if path:
+        print("PATH FOUND:")
         for i in range(len(path)):
             if i == len(path) - 1:
                 print(path[i])
