@@ -9,7 +9,6 @@ class Graph:
             self.content[destiny] = []
         self.content[origin].append((destiny, weight))
 
-    # CHECK: PRINTER
     def view_all(self):
         print("\n\nGraph:\n------")
         print("ORIGIN -> [(DESTINY, WEIGHT), ...]")

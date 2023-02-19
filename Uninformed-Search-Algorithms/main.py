@@ -85,13 +85,13 @@ def main():
         path, weight = dijkstra.run(graph, origin, destiny, runner)
         ftime = t.default_timer()
         times.append(ftime - stime)
-        f.show_path_dijkstra(path, weight)
+        f.show_path_dijkstra(path, weight)  # CRASHES IF OPPOSITE DIRECTION
 
         stime = t.default_timer()
         path = two_way.run(graph, origin, destiny, runner)
         ftime = t.default_timer()
         times.append(ftime - stime)
-        f.show_path(path)
+        f.show_path(path)  # REACHES IN OPPOSITE DIRECTION
 
     if runner:
         print("\n\nEXECUTION TIMES:\n----------------")

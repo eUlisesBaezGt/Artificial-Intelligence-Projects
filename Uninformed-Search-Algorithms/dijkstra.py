@@ -49,4 +49,3 @@ def run(graph, origin, destiny, runner):
         else:
             print("No path found.")
             return None, None
-
