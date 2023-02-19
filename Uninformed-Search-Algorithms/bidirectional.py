@@ -1,9 +1,9 @@
-import breadth
+import breadth as b
 
 
 def bidirectional(graph, origin, destiny):
     departure = True
-    if not breadth.breadth_first_search(graph, origin, destiny):
+    if not b.breadth_first_search(graph, origin, destiny):
         departure = False
 
     if departure:
