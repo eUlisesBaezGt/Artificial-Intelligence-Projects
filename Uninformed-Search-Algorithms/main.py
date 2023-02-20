@@ -163,7 +163,7 @@ def main():
                 elif best == times[4]:
                     print("Dijkstra is the best option")
                 elif best == times[5]:
-                    print("Two Way Search is the best option")
+                    print("Bidirectional Search is the best option")
 
 
 if __name__ == "__main__":
