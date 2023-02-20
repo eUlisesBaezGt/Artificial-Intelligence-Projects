@@ -1,9 +1,7 @@
 def dijkstra(graph, origin, destiny):
     distances = {node: float('inf') for node in graph.content}
     distances[origin] = 0
-
     visited = []
-
     shortest_paths = {}
 
     while len(visited) != len(graph.content):
@@ -13,13 +11,10 @@ def dijkstra(graph, origin, destiny):
             if distances[node] < current_distance and node not in visited:
                 current_node = node
                 current_distance = distances[node]
-
         if current_node is None:
             break
-
         if current_node not in visited:
             visited.append(current_node)
-
         for neighbor, weight in graph.content[current_node]:
             distance = int(current_distance) + int(weight)
             if distance < distances[neighbor]:
@@ -46,7 +41,7 @@ def dijkstra(graph, origin, destiny):
 
 def run(graph, origin, destiny, runner):
     if runner:
-        print("\n\nDijkstra:\n---------------------")
+        print("\n\ndijkstra:\n---------------------")
         path, weight = dijkstra(graph, origin, destiny)
         if path:
             return path, weight

@@ -1,12 +1,9 @@
 def depth_first_search(graph, origin, destiny, path=None):
     if path is None:
         path = []
-
     path.append(origin)
-
     if origin == destiny:
         return path
-
     for neighbor in graph.content[origin]:
         neighbor = neighbor[0]
         if neighbor not in path:

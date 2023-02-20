@@ -51,7 +51,7 @@ def main():
     limited_reached = False
     depth_reached = False
     iterative_reached = False
-    djikstra_limited_reached = False
+    dijkstra_limited_reached = False
     bidirectional_reached = False
 
     origin = string.capwords(origin).translate({ord(c): None for c in string.whitespace})
@@ -97,9 +97,9 @@ def main():
         path, weight = dijkstra.run(graph, origin, destiny, runner)
         ftime = t.default_timer()
         times.append(ftime - stime)
-        f.show_path_dijkstra(path, weight)  # CRASHES IF OPPOSITE DIRECTION
+        f.show_path_dijkstra(path, weight)
         if path:
-            djikstra_limited_reached = True
+            dijkstra_limited_reached = True
 
         stime = t.default_timer()
         path = bidirectional.run(graph, origin, destiny, runner)
@@ -132,7 +132,7 @@ def main():
             else:
                 print("Iterative Depth Search: No path found.")
                 times[3] = 999999999999
-            if djikstra_limited_reached:
+            if dijkstra_limited_reached:
                 print("Dijkstra: ", times[4])
             else:
                 print("Dijkstra: No path found.")
