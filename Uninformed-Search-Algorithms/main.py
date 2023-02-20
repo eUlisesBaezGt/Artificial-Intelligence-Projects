@@ -20,6 +20,7 @@ def main():
     # filename = "non_weighted_graph.txt"
 
     graph = Graph()
+    graph2 = Graph()
     with open(filename) as file:
         lines = file.readlines()
 
@@ -27,6 +28,7 @@ def main():
         origin, destiny, weight = lines[i].split()
         weights.append(weight)
         graph.new_edge(origin, destiny, weight)
+        graph2.new_edge(destiny, origin, weight)
 
     for i in range(len(weights)):
         if weights[i] != weights[0]:
@@ -102,7 +104,7 @@ def main():
             dijkstra_limited_reached = True
 
         stime = t.default_timer()
-        path = bidirectional.run(graph, origin, destiny, runner)
+        path = bidirectional.run(graph, graph2, origin, destiny, runner)
         ftime = t.default_timer()
         times.append(ftime - stime)
         f.show_path(path)
@@ -133,15 +135,15 @@ def main():
                 print("Iterative Depth Search: No path found.")
                 times[3] = 999999999999
             if dijkstra_limited_reached:
-                print("Dijkstra: ", times[4])
+                print("Dijkstra Algorithm: ", times[4])
             else:
-                print("Dijkstra: No path found.")
+                print("Dijkstra Algorithm: No path found.")
                 times[4] = 999999999999
 
             if bidirectional_reached:
-                print("Two Way Search: ", times[5])
+                print("Bidirectional Search: ", times[5])
             else:
-                print("Two Way Search: No path found.")
+                print("Bidirectional Search: No path found.")
                 times[5] = 999999999999
 
             if times[1] == 999999999999 and times[2] == 999999999999 and times[3] == 999999999999 and \
