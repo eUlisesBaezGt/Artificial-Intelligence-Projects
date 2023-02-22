@@ -1,4 +1,4 @@
-78 99
+78 100
 Cancun Valladolid 90
 Cancun FelipeCarrilloPuerto 100
 Valladolid FelipeCarrilloPuerto 90
@@ -47,6 +47,7 @@ Colima Manzanillo 50
 Manzanillo Guadalajara 80
 Colima Guadalajara 50
 Queretaro Salamanca 90
+Queretaro Atlacomulco 90
 Salamanca Morelia 90
 Salamanca Guadalajara 90
 Salamanca Guanajuato 90
