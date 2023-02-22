@@ -1,12 +1,12 @@
-import breadth as b
+import depth as b
 
 
 def bidirectional(graph, graph2, origin, destiny):
     departure = True
     arrival = True
-    if not b.breadth_first_search(graph, origin, destiny):
+    if not b.depth_first_search(graph, origin, destiny):
         departure = False
-    if not b.breadth_first_search(graph2, destiny, origin):
+    if not b.depth_first_search(graph2, destiny, origin):
         arrival = False
 
     if departure and arrival:

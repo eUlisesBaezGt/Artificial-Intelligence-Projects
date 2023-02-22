@@ -17,8 +17,8 @@ def main():
     times = []
 
     filename = "weighted_graph.txt"
-    # filename = "non_weighted_graph.txt"
-
+    #     # filename = "non_weighted_graph.txt"
+    #
     graph = Graph()
     graph2 = Graph()
     with open(filename) as file:
@@ -37,6 +37,8 @@ def main():
         if i == len(weights) - 1:
             print("The graph is not weighted\n")
             weighted = False
+
+    graph.view_all()
 
     print("Origin: ", end="")
     origin = input()
