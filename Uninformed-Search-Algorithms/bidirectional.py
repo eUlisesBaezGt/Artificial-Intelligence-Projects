@@ -20,12 +20,13 @@ def bidirectional(graph, graph2, origin, destiny):
             if node1 == destiny:
                 return path1
             if node2 == origin:
+                path2.reverse()
                 return path2
             for neighbor in graph.content[node1]:
                 new_path = list(path1)
                 new_path.append(neighbor[0])
                 queue1.append(new_path)
-            for neighbor in graph.content[node2]:
+            for neighbor in graph2.content[node2]:
                 new_path = list(path2)
                 new_path.append(neighbor[0])
                 queue2.append(new_path)

@@ -61,8 +61,6 @@ def main():
     origin = string.capwords(origin).translate({ord(c): None for c in string.whitespace})
     destiny = string.capwords(destiny).translate({ord(c): None for c in string.whitespace})
 
-    graph.view_all()
-
     stime = t.default_timer()
     path = breadth.run(graph, origin, destiny, runner)
     ftime = t.default_timer()
