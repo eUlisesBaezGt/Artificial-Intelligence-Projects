@@ -17,8 +17,8 @@ def main():
     times = []
 
     filename = "weighted_graph.txt"
-    #     # filename = "non_weighted_graph.txt"
-    #
+    # filename = "non_weighted_graph.txt"
+
     graph = Graph()
     graph2 = Graph()
     with open(filename) as file:
