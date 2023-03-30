@@ -5,6 +5,8 @@ import string
 from beam_search import beam_search
 import functions as f
 import branch_and_bound
+import a_star
+import weighted_a_star
 
 graph = Graph()
 
@@ -45,20 +47,20 @@ print("GREEDY_BEST_FIRST SEARCH:")
 path = greedy_best_first.greedy_best_first_search(graph, origin, "Bucharest", ht)
 print(path)
 print("-----------------")
-print(graph.content)
+#print(graph.content)
 
 print("GREEDY_BEST_FIRST SEARCH")
-#path = greedy_best_first.greedy_best_first_search(graph, origin, "Bucharest", ht)
-#print(path)
+path = greedy_best_first.greedy_best_first_search(graph, origin, "Bucharest", ht)
+print(path)
 print("-----------------")
 print("A* SEARCH")
-#path = a_star.a_star(graph, origin, "Bucharest", ht)
-#print(path)
+path = a_star.a_star(graph, origin, "Bucharest", ht)
+print(path)
 print("-----------------")
 print("WEIGHTED A* SEARCH")
-#w = float(input("Enter factor W: "))
-#path = weighted_a_star.weighted_a_star(graph, origin, "Bucharest", ht, w)
-#print(path)
+w = float(input("Enter factor W: "))
+path = weighted_a_star.weighted_a_star(graph, origin, "Bucharest", ht, w)
+print(path)
 print("-----------------")
 print("BRANCH AND BOUND")
 path = branch_and_bound.branch_and_bound(graph, origin, "Bucharest", ht)
