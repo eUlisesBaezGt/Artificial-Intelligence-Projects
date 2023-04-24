@@ -1,0 +1,21 @@
+20 20
+Arad Bucharest 366
+Bucharest Bucharest 0
+Craiova Bucharest 160
+Drobeta Bucharest 242
+Eforie Bucharest 161
+Fagaras Bucharest 176
+Giurgiu Bucharest 77
+Hirsova Bucharest 151
+Iasi Bucharest 226
+Lugoj Bucharest 244
+Mehadia Bucharest 241
+Neamt Bucharest 234
+Oradea Bucharest 380
+Pitesti Bucharest 100
+RimnicuVilcea Bucharest 193
+Sibiu Bucharest 253
+Timisoara Bucharest 329
+Urziceni Bucharest 80
+Vaslui Bucharest 199
+Zerind Bucharest 374
