@@ -1,0 +1,24 @@
+20 23
+Arad Zerind 5
+Zerind Oradea 5
+Oradea Sibiu 5
+Sibiu Fagaras 5
+Sibiu RimnicuVilcea 5
+Fagaras Bucharest 5
+RimnicuVilcea Pitesti 5
+RimnicuVilcea Craiova 5
+Pitesti Bucharest 5
+Craiova Pitesti 5
+Arad Sibiu 5
+Arad Timisoara 5
+Timisoara Lugoj 5
+Lugoj Mehadia 5
+Mehadia Drobeta 5
+Drobeta Craiova 5
+Bucharest Giurgiu 5
+Bucharest Urziceni 5
+Urziceni Hirsova 5
+Hirsova Eforie 5
+Urziceni Vaslui 5
+Vaslui Iasi 5
+Iasi Neamt 5
