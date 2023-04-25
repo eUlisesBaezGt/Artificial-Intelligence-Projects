@@ -1,8 +1,6 @@
 import random
 import math
 
-from KAGraph import KAGraph as KAg
-
 
 def generate_initial_solution(graph, start):
     # GET ALL THE CONNECTIONS OF THE START NODE AND ADD THEM TO THE SOLUTION
@@ -102,29 +100,3 @@ def sa(graph, start):
                                         percentage_to_reduce_temperature, graph)
     # PRINT THE SIMULATED ANNEALING RESULT
     print_simulated_annealing_result(result, initial_solution)
-
-
-def main():
-    # CREATE THE GRAPH
-    graph = KAg.Graph()
-
-    with open("heuristics.txt") as file:
-        lines = file.readlines()
-
-    for i in range(1, len(lines)):
-        origin, destiny, weight = lines[i].split()
-        graph.add_edge(origin, destiny, weight)
-
-    origin = input("Enter the origin: ")
-
-    # GET THE INITIAL SOLUTION
-    initial_solution = generate_initial_solution(graph, origin)
-
-    # GET THE SIMULATED ANNEALING RESULT
-    result = simulated_annealing_result(initial_solution, 1000, 100, 1, 0.1, graph)
-
-    # PRINT THE SIMULATED ANNEALING RESULT
-    print_simulated_annealing_result(result, initial_solution)
-
-
-main()
