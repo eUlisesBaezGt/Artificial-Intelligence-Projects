@@ -10,7 +10,7 @@ def show_path(path):
 
 def nodes_list(graph):
     nodes = []
-    for node in graph.content:
+    for node in graph.nodes:
         if node not in nodes:
             nodes.append(node.upper())
     return nodes
