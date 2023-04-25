@@ -16,6 +16,8 @@ python main.py
 # Run on console / Terminal:
 # pip install -i https://test.pypi.org/simple/ KAGraph==0.1.0
 
+# if heuristics.txt is not created, run relaciones.main()
+import os
 from KAGraph import KAGraph as KAg
 import string
 import AStar as ast
@@ -48,6 +50,12 @@ def print_menu():
 
 
 def main():
+    if not os.path.exists("heuristics.txt"):
+        import relaciones
+        relaciones.main()
+    else:
+        pass
+    
     g = KAg.Graph()  # Create a Graph object to store the cities and distances
     h = KAg.Graph()  # Create a Graph object to store the heuristics
 
