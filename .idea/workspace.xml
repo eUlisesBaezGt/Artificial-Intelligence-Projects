@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ff5901e7-4816-430d-8ff8-81a14fce5e5a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/graph.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Informed-Search-Loyal-Mau/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Informed-Search-Loyal-Mau/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/AStar.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/AStar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/Beam.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/Beam.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/BranchBound.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/BranchBound.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/Greedy.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/Greedy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/SimulatedAnnealing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/SimulatedAnnealing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/SteepestHillClimbing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/SteepestHillClimbing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/StochasticHillClimbing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/StochasticHillClimbing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/WeightedAStar.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/WeightedAStar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/data.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/heuristics.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/mainProyecto.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/funcs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/relaciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/relaciones.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2OvOIcyaxQ1zQhpJEqJmTsHeGRa" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.GIT_CREDENTIAL_SETUP": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/workspaces/Artificial-Intelligence-Projects/Kikin-Informed-Search-Algorithms/main.py",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" singleton="false" nameIsGenerated="true">
+      <module name="Artificial-Intelligence-Projects" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.8" />
+      <option name="SDK_NAME" value="Python 3.8" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ff5901e7-4816-430d-8ff8-81a14fce5e5a" name="Changes" comment="" />
+      <created>1682437523197</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1682437523197</updated>
+      <workItem from="1682437525218" duration="176000" />
+      <workItem from="1682437856586" duration="484000" />
+      <workItem from="1682438813497" duration="3730000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Artificial_Intelligence_Projects$relaciones.coverage" NAME="SimulatedAnnealing Coverage Results" MODIFIED="1682445214560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms" />
+  </component>
+</project>
