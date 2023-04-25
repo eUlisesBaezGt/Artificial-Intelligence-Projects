@@ -30,7 +30,7 @@ def StochasticHillClimbing(graph, heuristcs, origin="Arad", destination="Buchare
 
 def main():
     graph = KAg.Graph()
-    with open("data.txt") as file:
+    with open("graph.txt") as file:
         lines = file.readlines()
 
     for i in range(1, len(lines)):

@@ -36,7 +36,7 @@ def greedy_best_first_search(graph, heuristics, start, goal):
 
 def main():
     graph = KAg.Graph()
-    with open("data.txt") as file:
+    with open("graph.txt") as file:
         lines = file.readlines()
 
     for i in range(1, len(lines)):

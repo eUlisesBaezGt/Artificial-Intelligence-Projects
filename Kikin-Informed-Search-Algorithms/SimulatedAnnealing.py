@@ -3,6 +3,7 @@ import math
 
 from KAGraph import KAGraph as KAg
 
+
 def generate_initial_solution(graph, start):
     # GET ALL THE CONNECTIONS OF THE START NODE AND ADD THEM TO THE SOLUTION
     # SEARCH FOR THE START NODE IN THE GRAPH USING DICTIONARY KEY
@@ -42,9 +43,9 @@ def get_solution_cost(solution, graph):
     cost = 0
 
     for i in range(len(solution) - 1):
-        cost = cost + graph.get_weight(solution[i], solution[i + 1])
+        cost = cost + float(graph.get_weight(solution[i], solution[i + 1]))
 
-    cost = cost + graph.get_weight(solution[len(solution) - 2], solution[len(solution) - 1])
+    cost = cost + float(graph.get_weight(solution[len(solution) - 2], solution[len(solution) - 1]))
 
     return cost
 
@@ -89,26 +90,30 @@ def print_simulated_annealing_result(result, initial_solution):
     print('\nSimulated annealing solution cost = ', result[2])
 
 
+def sa(graph, start):
+    # GET THE INITIAL SOLUTION
+    initial_solution = generate_initial_solution(graph, start)
+    # GET THE SIMULATED ANNEALING RESULT
+    initial_temperature = float(input("Enter the initial temperature: "))
+    number_of_iterations = int(input("Enter the number of iterations: "))
+    stop_temperature = float(input("Enter the stop temperature: "))
+    percentage_to_reduce_temperature = float(input("Enter the percentage to reduce temperature: "))
+    result = simulated_annealing_result(initial_solution, initial_temperature, number_of_iterations, stop_temperature,
+                                        percentage_to_reduce_temperature, graph)
+    # PRINT THE SIMULATED ANNEALING RESULT
+    print_simulated_annealing_result(result, initial_solution)
+
+
 def main():
     # CREATE THE GRAPH
     graph = KAg.Graph()
 
-    # ADD THE EDGES
-    graph.add_edge("Sibiu", "Rimnicu Vilcea", 80)
-    graph.add_edge("Sibiu", "Fagaras", 99)
-    graph.add_edge("Rimnicu Vilcea", "Craiova", 146)
-    graph.add_edge("Rimnicu Vilcea", "Pitesti", 97)
-    graph.add_edge("Craiova", "Pitesti", 138)
-    graph.add_edge("Pitesti", "Bucharest", 101)
-    graph.add_edge("Fagaras", "Bucharest", 211)
-    graph.add_edge("Sibiu", "Craiova", 1000)
-    graph.add_edge("Sibiu", "Pitesti", 1000)
-    graph.add_edge("Sibiu", "Bucharest", 1000)
-    graph.add_edge("Rimnicu Vilcea", "Bucharest", 1000)
-    graph.add_edge("Rimnicu Vilcea", "Fagaras", 1000)
-    graph.add_edge("Craiova", "Bucharest", 1000)
-    graph.add_edge("Fagaras", "Craiova", 1000)
-    graph.add_edge("Fagaras", "Pitesti", 1000)
+    with open("heuristics.txt") as file:
+        lines = file.readlines()
+
+    for i in range(1, len(lines)):
+        origin, destiny, weight = lines[i].split()
+        graph.add_edge(origin, destiny, weight)
 
     origin = input("Enter the origin: ")
 
@@ -120,5 +125,6 @@ def main():
 
     # PRINT THE SIMULATED ANNEALING RESULT
     print_simulated_annealing_result(result, initial_solution)
+
 
 main()
