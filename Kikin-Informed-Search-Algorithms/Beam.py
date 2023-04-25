@@ -1,8 +1,8 @@
-from KAGraph import KAGraph as KAg
 from queue import PriorityQueue
 
 
-def BeamSearch(graph, heuristics, beam_width=2, start='Arad', goal='Bucharest'):
+def BeamSearch(graph, heuristics, start, goal):
+    beam_width = int(input("Beam width: "))
     if start == goal:
         return [start]
 
@@ -10,7 +10,7 @@ def BeamSearch(graph, heuristics, beam_width=2, start='Arad', goal='Bucharest'):
     explored = set()
     parents = {}
 
-    frontier.put((start, 0))
+    frontier.put(start, heuristics.get_weight(start, goal))
     parents[start] = None
 
     while not frontier.empty():
@@ -37,30 +37,3 @@ def BeamSearch(graph, heuristics, beam_width=2, start='Arad', goal='Bucharest'):
                     parents[neighbor] = candidate
 
     return None
-
-
-def main():
-    graph = KAg.Graph()
-    with open("graph.txt") as file:
-        lines = file.readlines()
-
-    for i in range(1, len(lines)):
-        origin, destiny, weight = lines[i].split()
-        graph.add_edge(origin, destiny, weight)
-
-    heuristics = KAg.Graph()
-    with open("heuristics.txt") as file:
-        lines = file.readlines()
-
-    for i in range(1, len(lines)):
-        origin, destiny, weight = lines[i].split()
-        heuristics.add_edge(origin, destiny, weight)
-
-    k = int(input("Beam width: "))
-    path = BeamSearch(graph, heuristics, k)
-
-    print(f"Path: {path}")
-
-
-if __name__ == "__main__":
-    main()
