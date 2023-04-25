@@ -82,10 +82,20 @@ cities_coordinates = {
 }
 
 
+def convert_camelcase(cities_coordinates):
+    new_cities_coordinates = {}
+    for city, coordinates in cities_coordinates.items():
+        words = city.split()
+        camelcase = ''.join([word.capitalize() for word in words])
+        new_cities_coordinates[camelcase] = coordinates
+    return new_cities_coordinates
+
+cities = convert_camelcase(cities_coordinates)
+
 def get_haversine_distances(goal_city): #calcula las heuristicas de haversiene
     distances = {}
-    lat1, lon1 = cities_coordinates[goal_city]
-    for city_name, (lat2, lon2) in cities_coordinates.items():
+    lat1, lon1 = cities[goal_city]
+    for city_name, (lat2, lon2) in cities.items():
         r = 6371  # radio de la Tierra en km
         dlat = math.radians(lat2-lat1)
         dlon = math.radians(lon2-lon1)
@@ -94,12 +104,13 @@ def get_haversine_distances(goal_city): #calcula las heuristicas de haversiene
         distances[city_name] = r * c
     return distances
 
-
 def main():
+    
+    # for goal_city in cities:
+    #     print(goal_city)
 
     ciudad = []
-    c = 'VALLADOLID'
-    for goal_city in cities_coordinates:
+    for goal_city in cities:
         # print(goal_city)
         heuristica = get_haversine_distances(goal_city)
 
