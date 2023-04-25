@@ -1,7 +1,4 @@
-from KAGraph import KAGraph as KAg
-
-
-def SteepestHillClimbing(graph, heuristcs, origin="Arad", destination="Bucharest"):
+def SteepestHillClimbing(graph, heuristcs, origin, destination):
     costs = {origin: 0}
     paths = {origin: []}
     frontier = [origin]
@@ -23,29 +20,3 @@ def SteepestHillClimbing(graph, heuristcs, origin="Arad", destination="Bucharest
                 if next_node not in frontier:
                     frontier.append(next_node)
     return None
-
-
-def main():
-    graph =KAg.Graph()
-    with open("graph.txt") as file:
-        lines = file.readlines()
-
-    for i in range(1, len(lines)):
-        origin, destiny, weight = lines[i].split()
-        graph.add_edge(origin, destiny, weight)
-
-    heuristics =KAg.Graph()
-    with open("heuristics.txt") as file:
-        lines = file.readlines()
-
-    for i in range(1, len(lines)):
-        origin, destiny, weight = lines[i].split()
-        heuristics.add_edge(origin, destiny, weight)
-
-    path = SteepestHillClimbing(graph, heuristics)
-
-    print(f"Path: {path}")
-
-
-if __name__ == "__main__":
-    main()
