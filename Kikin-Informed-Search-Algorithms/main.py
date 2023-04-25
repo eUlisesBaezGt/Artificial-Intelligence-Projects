@@ -14,11 +14,10 @@ python main.py
 
 # Install our Graph Class Package from Test PyPi (uploaded y published by ourselves)
 # Run on console / Terminal:
-# pip install -i https://test.pypi.org/simple/ KAGraph
+# pip install -i https://test.pypi.org/simple/ KAGraph==0.1.0
 
 from KAGraph import KAGraph as KAg
 import string
-import funcs as f
 import AStar as ast
 import Beam as beam
 import BranchBound as bb
@@ -27,6 +26,8 @@ import SimulatedAnnealing as sa
 import SteepestHillClimbing as stehc
 import StochasticHillClimbing as stochc
 import WeightedAStar as wast
+from funcs import show_path
+import timeit as t
 
 
 def print_menu():
@@ -68,38 +69,45 @@ def main():
     origin = input()
     origin = string.capwords(origin).translate({ord(c): None for c in string.whitespace})
     origin2 = origin.translate({ord(c): None for c in string.whitespace})
-    runner1 = f.check_origin(g, origin2)
+    runner1 = g.check_origin(origin2)
 
     print("Destiny: ", end="")
     destiny = input()
     destiny = string.capwords(destiny).translate({ord(c): None for c in string.whitespace})
     destiny2 = destiny.translate({ord(c): None for c in string.whitespace})
-    runner2 = f.check_destiny(g, destiny2)
+    runner2 = g.check_destiny(destiny2)
+
+    origin = string.capwords(origin).translate({ord(c): None for c in string.whitespace})
+    destiny = string.capwords(destiny).translate({ord(c): None for c in string.whitespace})
+
+    path = None
 
     if runner1 and runner2:
         print("VALID origin and destiny")
         opt = print_menu()
 
         if opt == 1:
-            gbfs.greedy_best_first_search(g, h, origin, destiny)
+            path = gbfs.greedy_best_first_search(g, h, origin, destiny)
         elif opt == 2:
-            ast.AStarSearch(g, h, origin, destiny)
+            path = ast.AStarSearch(g, h, origin, destiny)
         elif opt == 3:
-            wast.WeightedAStarSearch(g, h, origin, destiny)
+            path = wast.WeightedAStarSearch(g, h, origin, destiny)
         elif opt == 4:
-            beam.BeamSearch(g, h, origin, destiny)
+            path = beam.BeamSearch(g, h, origin, destiny)
         elif opt == 5:
-            bb.BranchAndBound(g, origin, destiny)  # TODO CHECAR SI TIENE HEURISTICA
+            path = bb.BranchAndBound(g, origin, destiny)  # TODO CHECAR SI TIENE HEURISTICA
         elif opt == 6:
-            stehc.SteepestHillClimbing(g, h, origin, destiny)
+            path = stehc.SteepestHillClimbing(g, h, origin, destiny)
         elif opt == 7:
-            stochc.StochasticHillClimbing(g, h, origin, destiny)
+            path = stochc.StochasticHillClimbing(g, h, origin, destiny)
         elif opt == 8:
-            sa.sa(g, origin)
+            path = sa.sa(g, origin)
         elif opt == 9:
             print("Bye!")
         else:
             print("INVALID option")
+
+        show_path(path)
 
     else:
         print("INVALID origin or destiny")
