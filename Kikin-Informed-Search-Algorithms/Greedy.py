@@ -1,7 +1,5 @@
 from queue import PriorityQueue
 
-from KAGraph import KAGraph as KAg
-
 
 def greedy_best_first_search(graph, heuristics, start, goal):
     if start == goal:
@@ -11,7 +9,7 @@ def greedy_best_first_search(graph, heuristics, start, goal):
     explored = set()
     parents = {}
 
-    frontier.put(start, 0)
+    frontier.put(start, heuristics.get_weight(start, goal))
     parents[start] = None
 
     while not frontier.empty():
@@ -32,29 +30,3 @@ def greedy_best_first_search(graph, heuristics, start, goal):
                 parents[neighbor] = current
 
     return None
-
-
-def main():
-    graph = KAg.Graph()
-    with open("graph.txt") as file:
-        lines = file.readlines()
-
-    for i in range(1, len(lines)):
-        origin, destination, weight = lines[i].split()
-        graph.add_edge(origin, destination, weight)
-
-    heuristics = KAg.Graph()
-    with open("heuristics.txt") as file:
-        lines = file.readlines()
-
-    for i in range(1, len(lines)):
-        origin, destination, weight = lines[i].split()
-        heuristics.add_edge(origin, destination, weight)
-
-    path = greedy_best_first_search(graph, heuristics, "Arad", "Bucharest")
-
-    print(f"Path: {path}")
-
-
-if __name__ == "__main__":
-    main()
