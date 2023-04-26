@@ -14,6 +14,8 @@ python main.py
 """
 
 from queue import PriorityQueue
+import time
+start_time = time.time()
 
 
 def BeamSearch(graph, heuristics, start, goal):
@@ -62,3 +64,6 @@ def BeamSearch(graph, heuristics, start, goal):
 
     # if no solution is found, return None
     return None
+
+end_time = time.time()
+print("Tiempo de ejecución: ", end_time - start_time, "segundos")
