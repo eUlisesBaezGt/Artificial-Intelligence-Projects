@@ -15,9 +15,10 @@ python main.py
 
 from queue import PriorityQueue
 import time
-start_time = time.time()
+
 
 def BranchAndBound(graph, origin, destination):
+    start_time = time.time()
     # Create an empty set to keep track of visited nodes
     visited = set()
     # Create a priority queue to store the nodes we need to explore
@@ -45,7 +46,6 @@ def BranchAndBound(graph, origin, destination):
                 # Add the new path and bound to the priority queue
                 frontier.put((bound, neighbor, new_path))
     # If we have explored all possible paths and have not found a path to the destination node, return None
+    end_time = time.time()
+    print("Exec time: ", end_time - start_time, "segundos")
     return None
-
-end_time = time.time()
-print("Tiempo de ejecución: ", end_time - start_time, "segundos")

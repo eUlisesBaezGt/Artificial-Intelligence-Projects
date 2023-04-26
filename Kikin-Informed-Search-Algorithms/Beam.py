@@ -15,12 +15,12 @@ python main.py
 
 from queue import PriorityQueue
 import time
-start_time = time.time()
 
 
 def BeamSearch(graph, heuristics, start, goal):
     # get the beam width from the user
     beam_width = int(input("Beam Width: "))
+    start_time = time.time()
 
     # if the start node is the same as the goal node, return the start node as the solution
     if start == goal:
@@ -62,8 +62,7 @@ def BeamSearch(graph, heuristics, start, goal):
                     # keep track of the parent node to reconstruct the path later
                     parents[neighbor] = candidate
 
+    end_time = time.time()
+    print("Exec time: ", end_time - start_time, "segundos")
     # if no solution is found, return None
     return None
-
-end_time = time.time()
-print("Tiempo de ejecución: ", end_time - start_time, "segundos")
