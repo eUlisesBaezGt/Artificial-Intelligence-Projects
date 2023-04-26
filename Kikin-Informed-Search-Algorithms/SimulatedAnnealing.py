@@ -41,8 +41,6 @@ def get_solution_cost(solution, graph):
     cost = 0
 
     for i in range(len(solution) - 1):
-        print(solution[i])
-        print(solution[i + 1])
         cost = cost + float(graph.get_weight(solution[i], solution[i + 1]))
 
     cost = cost + float(graph.get_weight(solution[len(solution) - 2], solution[len(solution) - 1]))
@@ -83,13 +81,6 @@ def simulated_annealing_result(initial_solution, initial_temperature, number_of_
     return current_solution, first_solution_cost, current_solution_cost
 
 
-def print_simulated_annealing_result(result, initial_solution):
-    print('\nInitial solution = ', initial_solution)
-    print('\nInitial solution cost = ', result[1])
-    print('\nSimulated annealing solution = ', result[0])
-    print('\nSimulated annealing solution cost = ', result[2])
-
-
 def sa(graph, start):
     # GET THE INITIAL SOLUTION
     initial_solution = generate_initial_solution(graph, start)
@@ -100,5 +91,5 @@ def sa(graph, start):
     percentage_to_reduce_temperature = float(input("Enter the percentage to reduce temperature: "))
     result = simulated_annealing_result(initial_solution, initial_temperature, number_of_iterations, stop_temperature,
                                         percentage_to_reduce_temperature, graph)
-    # PRINT THE SIMULATED ANNEALING RESULT
-    print_simulated_annealing_result(result, initial_solution)
+    print(f"Cost: {result[2]}")
+    return result[0]

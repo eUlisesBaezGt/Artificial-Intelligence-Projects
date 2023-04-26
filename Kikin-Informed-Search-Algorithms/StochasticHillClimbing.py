@@ -10,7 +10,7 @@ def StochasticHillClimbing(graph, heuristcs, origin, destination):
         current = frontier.pop(0)
         if current == destination:
             print(f"Cost: {costs[current]}")
-            return [origin] + paths[current]
+            return paths[current]
 
         for destiny in graph.get_neighbors(current):
             weight = graph.get_weight(current, destiny)

@@ -6,6 +6,7 @@ Enrique Ulises Báez Gómez Tagle
 Iván Cruz Ledesma
 Mauricio Pérez Aguirre
 April 26 2023
+v 1.0
 Main file where you can select the algorithm you want to use.
 To use this file, please install our package and run file from console.
 To run file, go to folder where this file is located and run:
@@ -14,7 +15,7 @@ python main.py
 
 # Install our Graph Class Package from Test PyPi (uploaded y published by ourselves)
 # Run on console / Terminal:
-# pip install -i https://test.pypi.org/simple/ KAGraph==0.1.0
+# pip install -i https://test.pypi.org/simple/ KAGraph
 
 # if heuristics.txt is not created, run relaciones.main()
 
@@ -32,7 +33,7 @@ from funcs import show_path
 import timeit as t
 
 
-def print_menu():
+def print_menu():  # Prints menu and returns option selected
     print("1) Greedy Best First Search")
     print("2) A*")
     print("3) Weighted A*")
@@ -45,7 +46,6 @@ def print_menu():
 
     print("Select an option: ", end="")
     option = int(input())
-
     return option
 
 
@@ -53,31 +53,30 @@ def main():
     g = KAg.Graph()  # Create a Graph object to store the cities and distances
     h = KAg.Graph()  # Create a Graph object to store the heuristics
 
-    with open("graph.txt") as file:
-        lines = file.readlines()
+    with open("graph.txt") as file:  # Open file that has the graph
+        lines = file.readlines()  # Read all lines
 
-    for i in range(1, len(lines)):
-        origin, destination, weight = lines[i].split()
+    for i in range(1, len(lines)):  # For each line, add an edge to the graph
+        origin, destination, weight = lines[i].split()  # Split line into origin, destination and weight
         g.add_edge(origin, destination, weight)
 
-    with open("heuristics.txt") as file:
+    with open("heuristics.txt") as file:  # Open file that has the heuristics
         lines = file.readlines()
 
-    for i in range(1, len(lines)):
+    for i in range(1, len(lines)):  # For each line, add an edge to the graph, use the same graph object
         origin, destination, weight = lines[i].split()
         h.add_edge(origin, destination, weight)
 
-    # print("Origin: ", end="")
-    # origin = input()
-    origin = "Topolobampo"
+    print("Origin: ", end="")
+    origin = input()
     origin = string.capwords(origin).translate(
-        {ord(c): None for c in string.whitespace})
-    origin2 = origin.translate({ord(c): None for c in string.whitespace})
-    runner1 = g.check_origin(origin2)
+        {ord(c): None for c in string.whitespace}) # Write in title case and remove spaces
+    origin2 = origin.translate({ord(c): None for c in string.whitespace}) # Remove missing spaces
+    runner1 = g.check_origin(origin2)  # Check if origin exists in graph
 
-    # print("Destiny: ", end="")
-    # destiny = input()
-    destiny = "Ciudad Obregon"
+    print("Destiny: ", end="")
+    destiny = input()
+    destiny = "Ciudad Obregon" # FIXME: Change to input
     destiny = string.capwords(destiny).translate(
         {ord(c): None for c in string.whitespace})
     destiny2 = destiny.translate({ord(c): None for c in string.whitespace})

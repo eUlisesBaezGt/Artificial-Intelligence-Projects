@@ -13,7 +13,7 @@ def SteepestHillClimbing(graph, heuristcs, origin, destination):
 
         for next_node in graph.get_neighbors(current):
             weight = graph.get_weight(current, next_node)
-            cost = costs[current] + float(weight)
+            cost = costs[current] + int(weight)
             if next_node not in costs or cost < costs[next_node]:
                 costs[next_node] = cost
                 paths[next_node] = paths[current] + [current]

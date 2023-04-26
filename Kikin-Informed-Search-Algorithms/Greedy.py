@@ -9,7 +9,7 @@ def greedy_best_first_search(graph, heuristics, start, goal):
     explored = set()
     parents = {}
 
-    frontier.put(start, 0)
+    frontier.put(start, heuristics.get_weight(start, goal))
     parents[start] = None
 
     while not frontier.empty():
@@ -24,7 +24,7 @@ def greedy_best_first_search(graph, heuristics, start, goal):
 
         explored.add(current)
 
-        for neighbor in list(graph.get_neighbors(current)):
+        for neighbor in graph.get_neighbors(current):
             if neighbor not in explored and neighbor not in frontier.queue:
                 frontier.put(neighbor, heuristics.get_weight(neighbor, goal))
                 parents[neighbor] = current

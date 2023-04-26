@@ -2,7 +2,8 @@ from queue import PriorityQueue
 
 
 def BeamSearch(graph, heuristics, start, goal):
-    beam_width = int(input("Beam width: "))
+    beam_width = int(input("Beam Width: "))
+
     if start == goal:
         return [start]
 
@@ -10,7 +11,7 @@ def BeamSearch(graph, heuristics, start, goal):
     explored = set()
     parents = {}
 
-    frontier.put(start, heuristics.get_weight(start, goal))
+    frontier.put((start, 0))
     parents[start] = None
 
     while not frontier.empty():
@@ -19,7 +20,7 @@ def BeamSearch(graph, heuristics, start, goal):
             if not frontier.empty():
                 candidates.append(frontier.get())
 
-        for candidate in candidates:
+        for candidate, _ in candidates:
             if candidate == goal:
                 path = []
                 while candidate is not None:
