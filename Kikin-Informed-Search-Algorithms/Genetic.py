@@ -1,11 +1,12 @@
 import random
+import time
 
+# This function initializes a population of paths from a given origin to a destination
+# using a graph representation of the cities and the number of paths in the population.
 
 # This function initializes a population of paths from a given origin to a destination
 # using a graph representation of the cities and the number of paths in the population.
 
-# This function initializes a population of paths from a given origin to a destination
-# using a graph representation of the cities and the number of paths in the population.
 
 def initialize_population(graph, origin, destination, population_size):
     # Create an empty list to hold the population of paths.
@@ -94,10 +95,12 @@ def crossover(parent1, parent2):
     crossover_point = random.randint(1, len(parent1) - 2)
     # Generate the first offspring by taking the cities from the parent1 before the crossover point
     # and adding the cities from parent2 that are not already in the offspring.
-    offspring1 = parent1[:crossover_point] + [city for city in parent2 if city not in parent1[:crossover_point]]
+    offspring1 = parent1[:crossover_point] + \
+        [city for city in parent2 if city not in parent1[:crossover_point]]
     # Generate the second offspring by taking the cities from the parent2 before the crossover point
     # and adding the cities from parent1 that are not already in the offspring.
-    offspring2 = parent2[:crossover_point] + [city for city in parent1 if city not in parent2[:crossover_point]]
+    offspring2 = parent2[:crossover_point] + \
+        [city for city in parent1 if city not in parent2[:crossover_point]]
     # Return the two offspring.
     return offspring1, offspring2
 
@@ -153,12 +156,15 @@ def genetic_algorithm(graph, origin, destination):
     population_size = int(input("Population Size: "))
     num_generations = int(input("Number of generations: "))
     mutation_rate = float(input("Mutation rate: "))
+    start_time = time.time()
     # Initialize the population of paths.
-    population = initialize_population(graph, origin, destination, population_size)
+    population = initialize_population(
+        graph, origin, destination, population_size)
     # Loop through the specified number of generations.
     for _ in range(num_generations):
         # Calculate the fitness values for each path in the population.
-        fitness_values = [1 / fitness_function(graph, path) for path in population]
+        fitness_values = [
+            1 / fitness_function(graph, path) for path in population]
         # Create a new population by selecting parents, performing crossover and mutation, and adding the offspring
         # to the new population.
         new_population = []
@@ -182,6 +188,8 @@ def genetic_algorithm(graph, origin, destination):
     best_path = min(population, key=lambda x: fitness_function(graph, x))
     best_cost = fitness_function(graph, best_path)
     # Print the cost of the best path and return the best path.
+    end_time = time.time()
+    print("Tiempo de ejecución: ", end_time - start_time, "segundos")
     print(f"Cost: {best_cost}")
     return best_path
 

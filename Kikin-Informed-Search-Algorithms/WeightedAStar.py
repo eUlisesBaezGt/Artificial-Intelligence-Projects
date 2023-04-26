@@ -16,11 +16,11 @@ python main.py
 from queue import PriorityQueue
 import time
 
+
 def WeightedAStarSearch(graph, heuristics, origin, destination):
-    start_time = time.time()
     # Asks the user for the weight value to be used in the search.
     weight = float(input("Enter w value: "))
-
+    start_time = time.time()
     # Initializes the frontier queue and adds the starting node with its heuristic cost.
     frontier = PriorityQueue()
     frontier.put(origin, heuristics.get_weight(origin, destination))
@@ -60,8 +60,7 @@ def WeightedAStarSearch(graph, heuristics, origin, destination):
 
     # Prints the cost of the path and returns the path.
     print(f"Cost: {cost_so_far[destination]}")
-    
+
     end_time = time.time()
     print("Tiempo de ejecución: ", end_time - start_time, "segundos")
     return path
-

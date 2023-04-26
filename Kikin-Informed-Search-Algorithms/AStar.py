@@ -41,14 +41,14 @@ def AStarSearch(graph, heuristics, origin, destination):
         for next_node in graph.get_neighbors(current):
             # calculate the cost of reaching the next node from the current node
             new_cost = cost_so_far[current] + \
-                       int(graph.get_weight(current, next_node))
+                int(graph.get_weight(current, next_node))
 
             # if the next node has not been visited or the new cost is lower than the previous cost,
             # update the cost of the next node and its priority in the priority queue
             if next_node not in cost_so_far or new_cost < cost_so_far[next_node]:
                 cost_so_far[next_node] = new_cost
                 priority = new_cost + \
-                           float(heuristics.get_weight(next_node, destination))
+                    float(heuristics.get_weight(next_node, destination))
                 frontier.put(next_node, priority)
 
                 # keep track of the parent node to reconstruct the path later

@@ -18,9 +18,9 @@ import time
 
 
 def BeamSearch(graph, heuristics, start, goal):
-    start_time = time.time()
     # get the beam width from the user
     beam_width = int(input("Beam Width: "))
+    start_time = time.time()
 
     # if the start node is the same as the goal node, return the start node as the solution
     if start == goal:

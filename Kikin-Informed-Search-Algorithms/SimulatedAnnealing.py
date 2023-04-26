@@ -17,6 +17,7 @@ import random
 import math
 import time
 
+
 def generate_initial_solution(graph, start):
     # GET ALL THE CONNECTIONS OF THE START NODE AND ADD THEM TO THE SOLUTION
     # SEARCH FOR THE START NODE IN THE GRAPH USING DICTIONARY KEY
@@ -141,7 +142,6 @@ def simulated_annealing_result(initial_solution, initial_temperature, number_of_
 
 
 def sa(graph, start):
-    start_time = time.time()
 
     # Generate the initial solution
     initial_solution = generate_initial_solution(graph, start)
@@ -152,6 +152,7 @@ def sa(graph, start):
     stop_temperature = float(input("Enter the stop temperature: "))
     percentage_to_reduce_temperature = float(
         input("Enter the percentage to reduce temperature: "))
+    start_time = time.time()
     result = simulated_annealing_result(initial_solution, initial_temperature, number_of_iterations, stop_temperature,
                                         percentage_to_reduce_temperature, graph)
 
