@@ -1,83 +1,190 @@
 import random
 
-# Generate the initial population with a given size
-def generate_population(graph, pop_size, origin, destination):
-    # Remove the origin and destination from the nodes list
-    nodes = list(set(graph.nodes.keys()) - {origin, destination})
-    # Create the population by randomizing the order of nodes between origin and destination
-    return [[origin] + random.sample(nodes, len(nodes)) + [destination] for _ in range(int(pop_size))]
 
-# Calculate the total cost of a chromosome (path)
-def total_cost(graph, chromosome):
+# This function initializes a population of paths from a given origin to a destination
+# using a graph representation of the cities and the number of paths in the population.
+
+# This function initializes a population of paths from a given origin to a destination
+# using a graph representation of the cities and the number of paths in the population.
+
+def initialize_population(graph, origin, destination, population_size):
+    # Create an empty list to hold the population of paths.
+    population = []
+    # Loop through the population size to generate random paths for each individual in the population.
+    for _ in range(population_size):
+        # Add the origin city to the path.
+        path = [origin]
+        # Set the current city to the origin.
+        current = origin
+        # While the current city is not the destination, keep adding cities to the path.
+        while current != destination:
+            # Get the neighbors of the current city from the graph.
+            neighbors = graph.get_neighbors(current)
+            # Choose a random neighbor from the list of neighbors.
+            next_city = random.choice(list(neighbors))
+            # Add the chosen neighbor to the path and update the current city.
+            path.append(next_city)
+            current = next_city
+        # Add the completed path to the population.
+        population.append(path)
+    # Return the population of paths.
+    return population
+
+
+# This function calculates the fitness of a given path using the graph representation of the cities.
+
+def fitness_function(graph, path):
+    # Check if the graph and path are valid inputs, and the path has at least two cities.
+    if graph is None or path is None or len(path) < 2:
+        return float('inf')
+    # Check if any city has already been visited more than once.
+    if len(set(path)) != len(path):
+        return float('inf')
+    # Initialize the cost to zero.
     cost = 0
-    for i in range(len(chromosome) - 1):
-        cost += float(graph.nodes[chromosome[i]][chromosome[i + 1]])
-    return cost
+    # Loop through the cities in the path, and calculate the cost of the path.
+    for i in range(len(path) - 1):
+        # Get the first city of the current edge.
+        node1 = path[i]
+        # Get the second city of the current edge.
+        node2 = path[i + 1]
+        # Check if the second city is a neighbor of the first city.
+        if node2 not in graph.get_neighbors(node1):
+            # If node2 is not a neighbor of node1, the edge is missing, return infinity.
+            return float('inf')
+        # Get the weight of the edge between the two cities.
+        weight = graph.get_weight(node1, node2)
+        # Check if the weight of the edge is empty or None.
+        if not weight:
+            # If the weight is empty or None, the edge is missing, return infinity.
+            return float('inf')
+        # Add the weight of the edge to the cost.
+        cost += int(weight)
+    # If the cost of the path is less than or equal to zero, return infinity.
+    if cost <= 0:
+        return float('inf')
 
-# Calculate the fitness of a chromosome (inverse of the total cost)
-def fitness(graph, chromosome):
-    return 1 / total_cost(graph, chromosome)
+    # Return the fitness of the path, which is the inverse of the cost.
+    return 1 / cost
 
-# Select two parents based on their fitness values
+
+# This function selects two individuals from the population for the next generation, based on their fitness values.
+
 def selection(population, fitness_values):
-    selected = random.choices(population, weights=fitness_values, k=2)
+    # Calculate the total fitness of the population.
+    total_fitness = sum(fitness_values)
+    # If the total fitness is zero, set the normalized fitness to an equal value for each individual in the population.
+    if total_fitness == 0:
+        normalized_fitness = [1 / len(population)] * len(population)
+    # Otherwise, calculate the normalized fitness for each individual in the population.
+    else:
+        normalized_fitness = [f / total_fitness for f in fitness_values]
+    # Use the normalized fitness as weights to randomly select two individuals from the population.
+    selected = random.choices(population, weights=normalized_fitness, k=2)
+    # Return the two selected individuals.
     return selected[0], selected[1]
 
-# Perform crossover operation between two parents to produce a child
+
+# This function performs crossover between two parents to generate two offspring.
 def crossover(parent1, parent2):
-    # Randomly select two positions for crossover points
-    start, end = sorted(random.sample(range(1, len(parent1) - 1), 2))
-    # Initialize the child with None values except for origin and destination
-    child = [None] * len(parent1)
-    child[0], child[-1] = parent1[0], parent1[-1]
-    # Copy the segment between crossover points from parent1 to child
-    child[start:end] = parent1[start:end]
+    # Check if the length of the parent1 is less than or equal to 2, if yes, return the parents as offspring.
+    if len(parent1) <= 2:
+        return parent1, parent2
+    # Otherwise, randomly select a crossover point between the first and the last city of the parent1.
+    crossover_point = random.randint(1, len(parent1) - 2)
+    # Generate the first offspring by taking the cities from the parent1 before the crossover point
+    # and adding the cities from parent2 that are not already in the offspring.
+    offspring1 = parent1[:crossover_point] + [city for city in parent2 if city not in parent1[:crossover_point]]
+    # Generate the second offspring by taking the cities from the parent2 before the crossover point
+    # and adding the cities from parent1 that are not already in the offspring.
+    offspring2 = parent2[:crossover_point] + [city for city in parent1 if city not in parent2[:crossover_point]]
+    # Return the two offspring.
+    return offspring1, offspring2
 
-    # Fill in the remaining positions in the child using parent2
-    parent2_index, child_index = 1, 1
-    while None in child:
-        if parent2[parent2_index] not in child:
-            if child_index == start:
-                child_index = end
-            child[child_index] = parent2[parent2_index]
-            child_index += 1
-        parent2_index += 1
 
-    return child
+# This function performs mutation on an offspring by replacing two cities with their neighboring unvisited cities.
+def mutation(graph, offspring):
+    # Check if the length of the offspring is less than or equal to 3, if yes, return the offspring as it is.
+    if len(offspring) <= 3:
+        return offspring
+    # Loop until a mutation is successfully performed.
+    while True:
+        # Select two distinct indices from the offspring.
+        index1, index2 = random.sample(range(1, len(offspring) - 1), 2)
+        # Get the two cities to be mutated.
+        city1 = offspring[index1]
+        city2 = offspring[index2]
+        # Get the neighbors of the two cities from the graph.
+        neighbors1 = list(graph.get_neighbors(city1))
+        neighbors2 = list(graph.get_neighbors(city2))
+        # Check if the selected cities are already present in the path.
+        if city1 in offspring[:index1] + offspring[index1 + 1:index2] + offspring[index2 + 1:]:
+            continue
+        if city2 in offspring[:index1] + offspring[index1 + 1:index2] + offspring[index2 + 1:]:
+            continue
+        # Check if there are neighboring unvisited cities available to replace the old ones.
+        new_city1 = None
+        new_city2 = None
+        for neighbor in neighbors1:
+            if neighbor not in offspring:
+                new_city1 = neighbor
+                break
+        for neighbor in neighbors2:
+            if neighbor not in offspring:
+                new_city2 = neighbor
+                break
+        # If no unvisited neighboring city is found, skip the iteration and try again.
+        if new_city1 is None or new_city2 is None:
+            continue
+        # Replace the selected cities with the new ones.
+        offspring[index1] = new_city1
+        offspring[index2] = new_city2
+        # Check if the new offspring has a different path than the parent.
+        if len(set(offspring)) == len(offspring):
+            break
+    # Return the mutated offspring.
+    return offspring
 
-# Perform mutation on a child by randomly swapping positions
-def swap_mutation(chromosome, mutation_rate):
-    for i in range(1, len(chromosome) - 1):
-        if random.random() < mutation_rate:
-            j = random.randint(1, len(chromosome) - 2)
-            chromosome[i], chromosome[j] = chromosome[j], chromosome[i]
-    return chromosome
 
-# Main genetic algorithm function
+# This function implements the genetic algorithm for solving the traveling salesman problem.
+
 def genetic_algorithm(graph, origin, destination):
-    # Get user inputs for the genetic algorithm parameters
-    pop_size = int(input("Population Size: "))
-    max_generations = int(input("Max Generation: "))
-    mutation_rate = float(input("Mutation Rate: "))
-
-    # Generate the initial population
-    population = generate_population(graph, pop_size, origin, destination)
-
-    # Evolve the population over multiple generations
-    for generation in range(max_generations):
-        fitness_values = [fitness(graph, chromosome) for chromosome in population]
-        best_solution = population[fitness_values.index(max(fitness_values))]
-        best_cost = total_cost(graph, best_solution)
-
+    # Get the parameters for the genetic algorithm from the user.
+    population_size = int(input("Population Size: "))
+    num_generations = int(input("Number of generations: "))
+    mutation_rate = float(input("Mutation rate: "))
+    # Initialize the population of paths.
+    population = initialize_population(graph, origin, destination, population_size)
+    # Loop through the specified number of generations.
+    for _ in range(num_generations):
+        # Calculate the fitness values for each path in the population.
+        fitness_values = [1 / fitness_function(graph, path) for path in population]
+        # Create a new population by selecting parents, performing crossover and mutation, and adding the offspring
+        # to the new population.
         new_population = []
-        for _ in range(pop_size):
+        for _ in range(population_size // 2):
             parent1, parent2 = selection(population, fitness_values)
-            child = crossover(parent1, parent2)
-            child = swap_mutation(child, mutation_rate)
-            new_population.append(child)
-
+            offspring1, offspring2 = crossover(parent1, parent2)
+            if random.random() < mutation_rate:
+                offspring1 = mutation(graph, offspring1)
+            if random.random() < mutation_rate:
+                offspring2 = mutation(graph, offspring2)
+            new_population.extend([offspring1, offspring2])
+        # Replace the old population with the new population.
         population = new_population
+        # Check if the destination is already the last city in the path for the best path in the population.
+        best_path = min(population, key=lambda x: fitness_function(graph, x))
+        if best_path[-1] == destination:
+            best_cost = fitness_function(graph, best_path)
+            print(f"Cost: {best_cost}")
+            return best_path
+    # Get the best path from the final population and calculate its fitness value.
+    best_path = min(population, key=lambda x: fitness_function(graph, x))
+    best_cost = fitness_function(graph, best_path)
+    # Print the cost of the best path and return the best path.
+    print(f"Cost: {best_cost}")
+    return best_path
 
-    # Print and return the best solution found
-    print(f"Cost {best_cost}")
-    return best_solution
+# The genetic algorithm works best when the selected cities are close together on the map. Choosing cities that are
+# too far apart will cause the algorithm to take longer to converge. To avoid this limitation, it is recommended to
+# choose two cities that are close together on the map.

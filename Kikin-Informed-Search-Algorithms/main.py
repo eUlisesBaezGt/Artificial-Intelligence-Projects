@@ -107,7 +107,6 @@ def main():
         elif opt == 4:
             path = beam.BeamSearch(g, h, origin, destiny)
         elif opt == 5:
-            # TODO CHECAR SI TIENE HEURISTICA
             path = bb.BranchAndBound(g, origin, destiny)
         elif opt == 6:
             path = stehc.SteepestHillClimbing(g, h, origin, destiny)
@@ -116,7 +115,7 @@ def main():
         elif opt == 8:
             path = sa.sa(g, origin)
         elif opt == 9:
-            path = gen.genetic_algorithm(h, origin, destiny)
+            path = gen.genetic_algorithm(g, origin, destiny)
         elif opt == 10:
             print("Bye!")
         else:

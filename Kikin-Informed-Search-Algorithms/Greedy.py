@@ -21,9 +21,8 @@ def greedy_best_first_search(graph, heuristics, start, goal):
     start_time = time.time()
     # If the start node is the same as the goal node, return a list containing just the start node
     if start == goal:
-        
         end_time = time.time()
-        print("Tiempo de ejecución: ", end_time - start_time, "segundos")   
+        print("Tiempo de ejecución: ", end_time - start_time, "segundos")
         return [start]
 
     # Create a priority queue to store the nodes we need to explore
@@ -33,7 +32,8 @@ def greedy_best_first_search(graph, heuristics, start, goal):
     # Create a dictionary to keep track of the parent of each node
     parents = {}
 
-    # Add the start node to the priority queue, along with its estimated cost to the goal node (as determined by the heuristic function)
+    # Add the start node to the priority queue, along with its estimated cost to the goal node (as determined by the
+    # heuristic function)
     frontier.put(start, heuristics.get_weight(start, goal))
     # Set the parent of the start node to None
     parents[start] = None
@@ -50,7 +50,7 @@ def greedy_best_first_search(graph, heuristics, start, goal):
                 path.append(current)
                 current = parents[current]
             # Return the path in reverse order (from start to goal)
-            
+
             end_time = time.time()
             print("Tiempo de ejecución: ", end_time - start_time, "segundos")
             return path[::-1]
@@ -62,14 +62,14 @@ def greedy_best_first_search(graph, heuristics, start, goal):
         for neighbor in graph.get_neighbors(current):
             # If the neighbor has not been explored and is not already in the priority queue
             if neighbor not in explored and neighbor not in frontier.queue:
-                # Add the neighbor to the priority queue, along with its estimated cost to the goal (as determined by the heuristic function)
+                # Add the neighbor to the priority queue, along with its estimated cost to the goal (as determined by
+                # the heuristic function)
                 frontier.put(neighbor, heuristics.get_weight(neighbor, goal))
                 # Set the parent of the neighbor to the current node
                 parents[neighbor] = current
 
     # If we have explored all possible paths and have not found a path to the goal node, return None
-    
+
     end_time = time.time()
     print("Tiempo de ejecución: ", end_time - start_time, "segundos")
     return None
-

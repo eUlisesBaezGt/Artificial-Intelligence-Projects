@@ -16,6 +16,7 @@ python main.py
 from queue import PriorityQueue
 import time
 
+
 def BranchAndBound(graph, origin, destination):
     start_time = time.time()
     # Create an empty set to keep track of visited nodes
@@ -50,4 +51,3 @@ def BranchAndBound(graph, origin, destination):
     end_time = time.time()
     print("Tiempo de ejecución: ", end_time - start_time, "segundos")
     return None
-
