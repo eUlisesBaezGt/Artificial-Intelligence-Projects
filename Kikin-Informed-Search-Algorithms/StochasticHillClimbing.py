@@ -14,9 +14,11 @@ python main.py
 """
 
 from random import shuffle
+import time
 
 
 def StochasticHillClimbing(graph, heuristcs, origin, destination):
+    start_time = time.time()
     # initialize costs and paths dictionaries with the origin node
     costs = {origin: 0}
     paths = {origin: []}
@@ -31,6 +33,8 @@ def StochasticHillClimbing(graph, heuristcs, origin, destination):
         if current == destination:
             # print the cost of the solution and return the path
             print(f"Cost: {costs[current]}")
+            end_time = time.time()
+            print("Tiempo de ejecución: ", end_time - start_time, "segundos")
             return paths[current]
 
         # loop through the neighbors of the current node
@@ -55,4 +59,7 @@ def StochasticHillClimbing(graph, heuristcs, origin, destination):
         # limit the frontier to the 10 lowest cost nodes
         frontier = frontier[:10]
 
+
+    end_time = time.time()
+    print("Tiempo de ejecución: ", end_time - start_time, "segundos")
     return None

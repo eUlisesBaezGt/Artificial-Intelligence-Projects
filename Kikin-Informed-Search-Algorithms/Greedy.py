@@ -14,11 +14,16 @@ python main.py
 """
 
 from queue import PriorityQueue
+import time
 
 
 def greedy_best_first_search(graph, heuristics, start, goal):
+    start_time = time.time()
     # If the start node is the same as the goal node, return a list containing just the start node
     if start == goal:
+        
+        end_time = time.time()
+        print("Tiempo de ejecución: ", end_time - start_time, "segundos")   
         return [start]
 
     # Create a priority queue to store the nodes we need to explore
@@ -45,6 +50,9 @@ def greedy_best_first_search(graph, heuristics, start, goal):
                 path.append(current)
                 current = parents[current]
             # Return the path in reverse order (from start to goal)
+            
+            end_time = time.time()
+            print("Tiempo de ejecución: ", end_time - start_time, "segundos")
             return path[::-1]
 
         # Add the current node to the set of explored nodes
@@ -60,4 +68,8 @@ def greedy_best_first_search(graph, heuristics, start, goal):
                 parents[neighbor] = current
 
     # If we have explored all possible paths and have not found a path to the goal node, return None
+    
+    end_time = time.time()
+    print("Tiempo de ejecución: ", end_time - start_time, "segundos")
     return None
+

@@ -16,7 +16,6 @@ python main.py
 from queue import PriorityQueue
 import time
 
-
 def BranchAndBound(graph, origin, destination):
     start_time = time.time()
     # Create an empty set to keep track of visited nodes
@@ -33,6 +32,8 @@ def BranchAndBound(graph, origin, destination):
         # If we have reached the destination node, print the cost and return the path
         if node == destination:
             print(f"Cost: {cost}")
+            end_time = time.time()
+            print("Tiempo de ejecución: ", end_time - start_time, "segundos")
             return path
         # Add the current node to the set of visited nodes
         visited.add(node)
@@ -47,5 +48,6 @@ def BranchAndBound(graph, origin, destination):
                 frontier.put((bound, neighbor, new_path))
     # If we have explored all possible paths and have not found a path to the destination node, return None
     end_time = time.time()
-    print("Exec time: ", end_time - start_time, "segundos")
+    print("Tiempo de ejecución: ", end_time - start_time, "segundos")
     return None
+

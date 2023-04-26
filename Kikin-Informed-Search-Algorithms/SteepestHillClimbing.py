@@ -12,9 +12,10 @@ To use this file, please install our package and run file from console.
 To run file, go to folder where this file is located and run:
 python main.py
 """
-
+import time
 
 def SteepestHillClimbing(graph, heuristcs, origin, destination):
+    start_time = time.time()
     # Initialize costs, paths, and frontier
     costs = {origin: 0}
     paths = {origin: []}
@@ -31,6 +32,8 @@ def SteepestHillClimbing(graph, heuristcs, origin, destination):
         if current == destination:
             # Print the cost and return the optimal path
             print(f"Cost: {costs[current]}")
+            end_time = time.time()
+            print("Tiempo de ejecución: ", end_time - start_time, "segundos")
             return paths[current] + [current]
 
         # Expand the current node
@@ -46,4 +49,7 @@ def SteepestHillClimbing(graph, heuristcs, origin, destination):
                     frontier.append(next_node)
 
     # If no path is found, return None
+
+    end_time = time.time()
+    print("Tiempo de ejecución: ", end_time - start_time, "segundos")
     return None

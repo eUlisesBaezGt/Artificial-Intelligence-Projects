@@ -15,7 +15,7 @@ python main.py
 
 import random
 import math
-
+import time
 
 def generate_initial_solution(graph, start):
     # GET ALL THE CONNECTIONS OF THE START NODE AND ADD THEM TO THE SOLUTION
@@ -92,8 +92,7 @@ def get_solution_cost(solution, graph):
     return cost
 
 
-def simulated_annealing_result(initial_solution, initial_temperature, number_of_iterations, stop_temperature,
-                               percentage_to_reduce_temperature, graph):
+def simulated_annealing_result(initial_solution, initial_temperature, number_of_iterations, stop_temperature, percentage_to_reduce_temperature, graph):
 
     # Initialize the temperature and the current solution
     temperature = initial_temperature
@@ -142,6 +141,8 @@ def simulated_annealing_result(initial_solution, initial_temperature, number_of_
 
 
 def sa(graph, start):
+    start_time = time.time()
+
     # Generate the initial solution
     initial_solution = generate_initial_solution(graph, start)
 
@@ -156,4 +157,7 @@ def sa(graph, start):
 
     # Print the cost of the optimal solution and return the solution itself
     print(f"Cost: {result[2]}")
+
+    end_time = time.time()
+    print("Tiempo de ejecución: ", end_time - start_time, "segundos")
     return result[0]
