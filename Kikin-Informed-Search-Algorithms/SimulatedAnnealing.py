@@ -38,75 +38,114 @@ def generate_initial_solution(graph, start):
 
 
 def decrease_temperature(temperature, percentage_to_reduce):
+    # Calculate the percentage decrease based on the given percentage and temperature
     decrease_percentage = 100 * \
         float(percentage_to_reduce) / float(temperature)
+    # Return the percentage decrease
     return decrease_percentage
 
 
 def generate_random_swap_solution(current_solution):
+    # This function takes a list called current_solution as input.
     indexes = random.sample(range(1, len(current_solution) - 1), 2)
+    """
+    This line creates a list called indexes that contains two randomly selected 
+    integers from the range 1 to the length of the input list minus one. 
+    The use of range(1, len(current_solution) - 1) ensures that the first and last 
+    elements of the list are not included.
+    """
     value_one = current_solution[indexes[0]]
     value_two = current_solution[indexes[1]]
+    """
+    These two lines create two variables, value_one and value_two, 
+    that hold the values at the two randomly selected indexes in the input list.
+    """
     swaped_solution = current_solution.copy()
+    # This line creates a new list called swaped_solution which is a copy of the input list.
     swaped_solution[indexes[0]] = value_two
     swaped_solution[indexes[1]] = value_one
+    """
+    These two lines swap the values at the randomly selected indexes in the swaped_solution list. 
+    The value at indexes[0] is replaced with value_two, and the value at indexes[1] is replaced with value_one.
+    """
     return swaped_solution
+    # The function returns the new list swaped_solution, which has two values randomly swapped.
 
 
 def get_solution_cost(solution, graph):
+
+    # Start with a cost of 0
     cost = 0
 
+    # Loop through each node in the solution except the last one
     for i in range(len(solution) - 1):
-        cost = cost + float(graph.get_weight(solution[i], solution[i + 1]))
+        # Get the weight of the edge between the current node and the next node
+        edge_weight = float(graph.get_weight(solution[i], solution[i + 1]))
+        # Add the edge weight to the cost
+        cost = cost + edge_weight
 
-    cost = cost + \
-        float(graph.get_weight(
-            solution[len(solution) - 2], solution[len(solution) - 1]))
+    # Add the weight of the last edge to the cost
+    cost = cost + float(graph.get_weight(
+        solution[len(solution) - 2], solution[len(solution) - 1]))
 
+    # Return the final cost
     return cost
 
 
 def simulated_annealing_result(initial_solution, initial_temperature, number_of_iterations, stop_temperature,
                                percentage_to_reduce_temperature, graph):
+
+    # Initialize the temperature and the current solution
     temperature = initial_temperature
     current_solution = initial_solution
 
+    # Calculate the cost of the initial solution
     first_solution_cost = get_solution_cost(current_solution, graph)
     current_solution_cost = 0
 
+    # Loop until the temperature reaches the stopping temperature
     while temperature >= stop_temperature:
+        # Loop through a number of iterations
         for i in range(number_of_iterations):
+            # Generate a new random solution by swapping two nodes in the current solution
             new_random_solution = generate_random_swap_solution(
                 current_solution)
 
+            # Calculate the costs of the current solution and the new random solution
             current_solution_cost = get_solution_cost(current_solution, graph)
             new_random_solution_cost = get_solution_cost(
                 new_random_solution, graph)
 
-            diferences_between_costs = current_solution_cost - new_random_solution_cost
+            # Calculate the difference between the costs
+            differences_between_costs = current_solution_cost - new_random_solution_cost
 
-            if diferences_between_costs >= 0:
+            # If the new solution is better, accept it
+            if differences_between_costs >= 0:
                 current_solution = new_random_solution
+            # If the new solution is worse, accept it with a certain probability based on the temperature
             else:
                 uniform_random_number = random.uniform(0, 1)
 
                 acceptance_probability = math.exp(
-                    diferences_between_costs / temperature)
+                    differences_between_costs / temperature)
 
                 if uniform_random_number <= acceptance_probability:
                     current_solution = new_random_solution
 
+        # Decrease the temperature
         alpha = decrease_temperature(
             temperature, percentage_to_reduce_temperature)
         temperature = int(temperature - alpha)
 
+    # Return the final solution and its costs
     return current_solution, first_solution_cost, current_solution_cost
 
 
 def sa(graph, start):
-    # GET THE INITIAL SOLUTION
+    # Generate the initial solution
     initial_solution = generate_initial_solution(graph, start)
-    # GET THE SIMULATED ANNEALING RESULT
+
+    # Run simulated annealing to find the optimal solution
     initial_temperature = float(input("Enter the initial temperature: "))
     number_of_iterations = int(input("Enter the number of iterations: "))
     stop_temperature = float(input("Enter the stop temperature: "))
@@ -114,5 +153,7 @@ def sa(graph, start):
         input("Enter the percentage to reduce temperature: "))
     result = simulated_annealing_result(initial_solution, initial_temperature, number_of_iterations, stop_temperature,
                                         percentage_to_reduce_temperature, graph)
+
+    # Print the cost of the optimal solution and return the solution itself
     print(f"Cost: {result[2]}")
     return result[0]
