@@ -70,13 +70,12 @@ def main():
     print("Origin: ", end="")
     origin = input()
     origin = string.capwords(origin).translate(
-        {ord(c): None for c in string.whitespace}) # Write in title case and remove spaces
-    origin2 = origin.translate({ord(c): None for c in string.whitespace}) # Remove missing spaces
+        {ord(c): None for c in string.whitespace})  # Write in title case and remove spaces
+    origin2 = origin.translate({ord(c): None for c in string.whitespace})  # Remove missing spaces
     runner1 = g.check_origin(origin2)  # Check if origin exists in graph
 
     print("Destiny: ", end="")
     destiny = input()
-    destiny = "Ciudad Obregon" # FIXME: Change to input
     destiny = string.capwords(destiny).translate(
         {ord(c): None for c in string.whitespace})
     destiny2 = destiny.translate({ord(c): None for c in string.whitespace})
