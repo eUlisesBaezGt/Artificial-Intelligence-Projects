@@ -17,8 +17,6 @@ python main.py
 # Run on console / Terminal:
 # pip install -i https://test.pypi.org/simple/ KAGraph
 
-# if heuristics.txt is not created, run relaciones.main()
-
 from KAGraph import KAGraph as KAg
 import string
 import AStar as ast
