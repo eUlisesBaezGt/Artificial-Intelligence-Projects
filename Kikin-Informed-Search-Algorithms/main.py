@@ -53,7 +53,8 @@ def main():
     g = KAg.Graph()  # Create a Graph object to store the cities and distances
     h = KAg.Graph()  # Create a Graph object to store the heuristics
 
-    with open("graph.txt") as file:  # Open file that has the graph
+    # Kikin-Informed-Search-Algorithms\graph.txt
+    with open("Kikin-Informed-Search-Algorithms\graph.txt") as file:  # Open file that has the graph
         lines = file.readlines()  # Read all lines
 
     for i in range(1, len(lines)):  # For each line, add an edge to the graph

@@ -15,11 +15,12 @@ python main.py
 import time
 
 from queue import PriorityQueue
-start_time = time.time()
+
 
 def AStarSearch(graph, heuristics, origin, destination):
     # initialize the priority queue with the origin node
     # and its priority based on the heuristic function
+    start_time = time.time()
     frontier = PriorityQueue()
     frontier.put(origin, heuristics.get_weight(origin, destination))
 
@@ -61,8 +62,7 @@ def AStarSearch(graph, heuristics, origin, destination):
 
     # print the cost of the path and return the path as a list of nodes
     print(f"Cost: {cost_so_far[destination]}")
+    end_time = time.time()
+    print("Exec time: ", end_time - start_time, "segundos")
 
     return path
-
-end_time = time.time()
-print("Tiempo de ejecución: ", end_time - start_time, "segundos")
