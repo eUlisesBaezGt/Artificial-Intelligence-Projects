@@ -17,11 +17,9 @@ def AStarSearch(graph, heuristics, origin, destination):
             new_cost = cost_so_far[current] + int(graph.get_weight(current, next_node))
             if next_node not in cost_so_far or new_cost < cost_so_far[next_node]:
                 cost_so_far[next_node] = new_cost
-                priority = new_cost + int(heuristics.get_weight(next_node, destination))
+                priority = new_cost + float(heuristics.get_weight(next_node, destination))
                 frontier.put(next_node, priority)
-                came_from[next_node] = current
-
-    # Reconstruct the path
+                came_from[next_node] = current  # Reconstruct the path
     path = [destination]
     while path[-1] != origin:
         path.append(came_from[path[-1]])

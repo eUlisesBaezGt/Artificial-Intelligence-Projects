@@ -126,9 +126,8 @@ def main():
     #     print(ciudad[i], ciudad[i + 1], ciudad[i + 2])
 
     with open('heuristics.txt', 'w') as file:
-        file.write("0" + ' ' + "0")
-        for i in range(1, len(ciudad), 3):
-            file.write(str(ciudad[i]) + ' ' + str(ciudad[i + 1]) + ' ' + str(ciudad[i + 2]) + '\n')
+        for i in range(0, len(ciudad), 3):
+            file.write(ciudad[i] + ' ' + ciudad[i + 1] + ' ' + str(ciudad[i + 2]) + '\n')
 
 
 main()
