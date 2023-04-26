@@ -29,6 +29,7 @@ import SimulatedAnnealing as sa
 import SteepestHillClimbing as stehc
 import StochasticHillClimbing as stochc
 import WeightedAStar as wast
+import genetic as gen
 from funcs import show_path
 import timeit as t
 
@@ -42,7 +43,8 @@ def print_menu():  # Prints menu and returns option selected
     print("6) Steepest Hill Climbing")
     print("7) Stochastic Hill Climbing")
     print("8) Simulated Annealing")
-    print("9) Exit")
+    print("9) Genetic")
+    print("10) Exit")
 
     print("Select an option: ", end="")
     option = int(input())
@@ -114,6 +116,8 @@ def main():
         elif opt == 8:
             path = sa.sa(g, origin)
         elif opt == 9:
+            path = gen.genetic_algorithm(graph, origin, destiny)
+        elif opt == 10:
             print("Bye!")
         else:
             print("INVALID option")
