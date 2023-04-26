@@ -82,7 +82,7 @@ Culiacan HidalgodelParral 80
 HidalgodelParral Topolobampo 110
 Culiacan Topolobampo 110
 Topolobampo CiudadObregon 90
-Chuihuahua Juarez 90
+Chihuahua Juarez 90
 Chihuahua Janos 90
 Janos AguaPrieta 110
 AguaPrieta SantaAna 60
