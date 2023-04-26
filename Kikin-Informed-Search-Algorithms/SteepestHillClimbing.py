@@ -4,7 +4,7 @@ def SteepestHillClimbing(graph, heuristcs, origin, destination):
     frontier = [origin]
 
     while frontier:
-        frontier.sort(key=lambda node: costs[node] + int(heuristcs.nodes[node][list(heuristcs.nodes[node].keys())[0]]))
+        frontier.sort(key=lambda node: costs[node] + float(heuristcs.nodes[node][list(heuristcs.nodes[node].keys())[0]]))
         current = frontier.pop(0)
 
         if current == destination:
@@ -13,7 +13,7 @@ def SteepestHillClimbing(graph, heuristcs, origin, destination):
 
         for next_node in graph.get_neighbors(current):
             weight = graph.get_weight(current, next_node)
-            cost = costs[current] + int(weight)
+            cost = costs[current] + float(weight)
             if next_node not in costs or cost < costs[next_node]:
                 costs[next_node] = cost
                 paths[next_node] = paths[current] + [current]

@@ -53,7 +53,7 @@ def main():
     g = KAg.Graph()  # Create a Graph object to store the cities and distances
     h = KAg.Graph()  # Create a Graph object to store the heuristics
 
-    with open("Kikin-Informed-Search-Algorithms\graph.txt") as file:
+    with open("graph.txt") as file:
         lines = file.readlines()
 
     for i in range(1, len(lines)):
@@ -67,15 +67,17 @@ def main():
         origin, destination, weight = lines[i].split()
         h.add_edge(origin, destination, weight)
 
-    print("Origin: ", end="")
-    origin = input()
+    # print("Origin: ", end="")
+    # origin = input()
+    origin = "Topolobampo"
     origin = string.capwords(origin).translate(
         {ord(c): None for c in string.whitespace})
     origin2 = origin.translate({ord(c): None for c in string.whitespace})
     runner1 = g.check_origin(origin2)
 
-    print("Destiny: ", end="")
-    destiny = input()
+    # print("Destiny: ", end="")
+    # destiny = input()
+    destiny = "Ciudad Obregon"
     destiny = string.capwords(destiny).translate(
         {ord(c): None for c in string.whitespace})
     destiny2 = destiny.translate({ord(c): None for c in string.whitespace})

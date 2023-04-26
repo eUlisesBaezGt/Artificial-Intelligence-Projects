@@ -15,6 +15,6 @@ def BranchAndBound(graph, origin, destination):
         for neighbor, weight in graph.nodes[node].items():
             if neighbor not in visited:
                 new_path = path + [neighbor]
-                bound = cost + int(weight)
+                bound = cost + float(weight)
                 frontier.put((bound, neighbor, new_path))
     return None

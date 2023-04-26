@@ -41,6 +41,8 @@ def get_solution_cost(solution, graph):
     cost = 0
 
     for i in range(len(solution) - 1):
+        print(solution[i])
+        print(solution[i + 1])
         cost = cost + float(graph.get_weight(solution[i], solution[i + 1]))
 
     cost = cost + float(graph.get_weight(solution[len(solution) - 2], solution[len(solution) - 1]))

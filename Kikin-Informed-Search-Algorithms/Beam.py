@@ -19,7 +19,7 @@ def BeamSearch(graph, heuristics, start, goal):
             if not frontier.empty():
                 candidates.append(frontier.get())
 
-        for candidate, _ in candidates:
+        for candidate in candidates:
             if candidate == goal:
                 path = []
                 while candidate is not None:
