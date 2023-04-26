@@ -12,9 +12,10 @@ To use this file, please install our package and run file from console.
 To run file, go to folder where this file is located and run:
 python main.py
 """
+import time
 
 from queue import PriorityQueue
-
+start_time = time.time()
 
 def AStarSearch(graph, heuristics, origin, destination):
     # initialize the priority queue with the origin node
@@ -60,4 +61,8 @@ def AStarSearch(graph, heuristics, origin, destination):
 
     # print the cost of the path and return the path as a list of nodes
     print(f"Cost: {cost_so_far[destination]}")
+
     return path
+
+end_time = time.time()
+print("Tiempo de ejecución: ", end_time - start_time, "segundos")
