@@ -57,13 +57,15 @@ def main():
         lines = file.readlines()  # Read all lines
 
     for i in range(1, len(lines)):  # For each line, add an edge to the graph
-        origin, destination, weight = lines[i].split()  # Split line into origin, destination and weight
+        # Split line into origin, destination and weight
+        origin, destination, weight = lines[i].split()
         g.add_edge(origin, destination, weight)
 
     with open("heuristics.txt") as file:  # Open file that has the heuristics
         lines = file.readlines()
 
-    for i in range(1, len(lines)):  # For each line, add an edge to the graph, use the same graph object
+    # For each line, add an edge to the graph, use the same graph object
+    for i in range(1, len(lines)):
         origin, destination, weight = lines[i].split()
         h.add_edge(origin, destination, weight)
 
@@ -71,7 +73,8 @@ def main():
     origin = input()
     origin = string.capwords(origin).translate(
         {ord(c): None for c in string.whitespace})  # Write in title case and remove spaces
-    origin2 = origin.translate({ord(c): None for c in string.whitespace})  # Remove missing spaces
+    origin2 = origin.translate(
+        {ord(c): None for c in string.whitespace})  # Remove missing spaces
     runner1 = g.check_origin(origin2)  # Check if origin exists in graph
 
     print("Destiny: ", end="")

@@ -1,3 +1,18 @@
+"""
+From Map to Graph
+Universidad Panamericana Campus Mixcoac
+Inteligencia Artificial
+Enrique Ulises Báez Gómez Tagle
+Iván Cruz Ledesma
+Mauricio Pérez Aguirre
+April 26 2023
+v 1.0
+Main file where you can select the algorithm you want to use.
+To use this file, please install our package and run file from console.
+To run file, go to folder where this file is located and run:
+python main.py
+"""
+
 import random
 import math
 
@@ -23,7 +38,8 @@ def generate_initial_solution(graph, start):
 
 
 def decrease_temperature(temperature, percentage_to_reduce):
-    decrease_percentage = 100 * float(percentage_to_reduce) / float(temperature)
+    decrease_percentage = 100 * \
+        float(percentage_to_reduce) / float(temperature)
     return decrease_percentage
 
 
@@ -43,7 +59,9 @@ def get_solution_cost(solution, graph):
     for i in range(len(solution) - 1):
         cost = cost + float(graph.get_weight(solution[i], solution[i + 1]))
 
-    cost = cost + float(graph.get_weight(solution[len(solution) - 2], solution[len(solution) - 1]))
+    cost = cost + \
+        float(graph.get_weight(
+            solution[len(solution) - 2], solution[len(solution) - 1]))
 
     return cost
 
@@ -58,10 +76,12 @@ def simulated_annealing_result(initial_solution, initial_temperature, number_of_
 
     while temperature >= stop_temperature:
         for i in range(number_of_iterations):
-            new_random_solution = generate_random_swap_solution(current_solution)
+            new_random_solution = generate_random_swap_solution(
+                current_solution)
 
             current_solution_cost = get_solution_cost(current_solution, graph)
-            new_random_solution_cost = get_solution_cost(new_random_solution, graph)
+            new_random_solution_cost = get_solution_cost(
+                new_random_solution, graph)
 
             diferences_between_costs = current_solution_cost - new_random_solution_cost
 
@@ -70,12 +90,14 @@ def simulated_annealing_result(initial_solution, initial_temperature, number_of_
             else:
                 uniform_random_number = random.uniform(0, 1)
 
-                acceptance_probability = math.exp(diferences_between_costs / temperature)
+                acceptance_probability = math.exp(
+                    diferences_between_costs / temperature)
 
                 if uniform_random_number <= acceptance_probability:
                     current_solution = new_random_solution
 
-        alpha = decrease_temperature(temperature, percentage_to_reduce_temperature)
+        alpha = decrease_temperature(
+            temperature, percentage_to_reduce_temperature)
         temperature = int(temperature - alpha)
 
     return current_solution, first_solution_cost, current_solution_cost
@@ -88,7 +110,8 @@ def sa(graph, start):
     initial_temperature = float(input("Enter the initial temperature: "))
     number_of_iterations = int(input("Enter the number of iterations: "))
     stop_temperature = float(input("Enter the stop temperature: "))
-    percentage_to_reduce_temperature = float(input("Enter the percentage to reduce temperature: "))
+    percentage_to_reduce_temperature = float(
+        input("Enter the percentage to reduce temperature: "))
     result = simulated_annealing_result(initial_solution, initial_temperature, number_of_iterations, stop_temperature,
                                         percentage_to_reduce_temperature, graph)
     print(f"Cost: {result[2]}")
