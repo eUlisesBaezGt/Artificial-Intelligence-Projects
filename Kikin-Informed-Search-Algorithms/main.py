@@ -53,7 +53,7 @@ def main():
     g = KAg.Graph()  # Create a Graph object to store the cities and distances
     h = KAg.Graph()  # Create a Graph object to store the heuristics
 
-    with open("graph.txt") as file:
+    with open("Kikin-Informed-Search-Algorithms\graph.txt") as file:
         lines = file.readlines()
 
     for i in range(1, len(lines)):
@@ -69,18 +69,22 @@ def main():
 
     print("Origin: ", end="")
     origin = input()
-    origin = string.capwords(origin).translate({ord(c): None for c in string.whitespace})
+    origin = string.capwords(origin).translate(
+        {ord(c): None for c in string.whitespace})
     origin2 = origin.translate({ord(c): None for c in string.whitespace})
     runner1 = g.check_origin(origin2)
 
     print("Destiny: ", end="")
     destiny = input()
-    destiny = string.capwords(destiny).translate({ord(c): None for c in string.whitespace})
+    destiny = string.capwords(destiny).translate(
+        {ord(c): None for c in string.whitespace})
     destiny2 = destiny.translate({ord(c): None for c in string.whitespace})
     runner2 = g.check_destiny(destiny2)
 
-    origin = string.capwords(origin).translate({ord(c): None for c in string.whitespace})
-    destiny = string.capwords(destiny).translate({ord(c): None for c in string.whitespace})
+    origin = string.capwords(origin).translate(
+        {ord(c): None for c in string.whitespace})
+    destiny = string.capwords(destiny).translate(
+        {ord(c): None for c in string.whitespace})
 
     path = None
 
@@ -97,7 +101,8 @@ def main():
         elif opt == 4:
             path = beam.BeamSearch(g, h, origin, destiny)
         elif opt == 5:
-            path = bb.BranchAndBound(g, origin, destiny)  # TODO CHECAR SI TIENE HEURISTICA
+            # TODO CHECAR SI TIENE HEURISTICA
+            path = bb.BranchAndBound(g, origin, destiny)
         elif opt == 6:
             path = stehc.SteepestHillClimbing(g, h, origin, destiny)
         elif opt == 7:
