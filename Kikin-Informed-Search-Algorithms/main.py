@@ -96,7 +96,7 @@ def main():
 
     if runner1 and runner2:
         print("VALID origin and destiny")
-        opt = print_menu()
+        opt = print_menu() # Print menu and get option selected
 
         if opt == 1:
             path = gbfs.greedy_best_first_search(g, h, origin, destiny)
@@ -121,7 +121,7 @@ def main():
         else:
             print("INVALID option")
 
-        show_path(path)
+        show_path(path) # Show returned path
 
     else:
         print("INVALID origin or destiny")

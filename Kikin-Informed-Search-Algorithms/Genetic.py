@@ -1,5 +1,18 @@
+"""
+From Map to Graph
+Universidad Panamericana Campus Mixcoac
+Inteligencia Artificial
+Enrique Ulises Báez Gómez Tagle
+Iván Cruz Ledesma
+Mauricio Pérez Aguirre
+April 26 2023
+v 1.0
+R: Enrique Ulises Báez Gómez Tagle
+"""
+
 import random
 import time
+
 
 # This function initializes a population of paths from a given origin to a destination
 # using a graph representation of the cities and the number of paths in the population.
@@ -96,11 +109,11 @@ def crossover(parent1, parent2):
     # Generate the first offspring by taking the cities from the parent1 before the crossover point
     # and adding the cities from parent2 that are not already in the offspring.
     offspring1 = parent1[:crossover_point] + \
-        [city for city in parent2 if city not in parent1[:crossover_point]]
+                 [city for city in parent2 if city not in parent1[:crossover_point]]
     # Generate the second offspring by taking the cities from the parent2 before the crossover point
     # and adding the cities from parent1 that are not already in the offspring.
     offspring2 = parent2[:crossover_point] + \
-        [city for city in parent1 if city not in parent2[:crossover_point]]
+                 [city for city in parent1 if city not in parent2[:crossover_point]]
     # Return the two offspring.
     return offspring1, offspring2
 
@@ -182,7 +195,9 @@ def genetic_algorithm(graph, origin, destination):
         best_path = min(population, key=lambda x: fitness_function(graph, x))
         if best_path[-1] == destination:
             best_cost = fitness_function(graph, best_path)
-            print(f"Cost: {best_cost}")
+            end_time = time.time()
+            print("Tiempo de ejecución: ", end_time - start_time, "segundos")
+            print(f"Cost: {best_cost}")  # Costs is maximum 1 because the fitness function is 1/cost
             return best_path
     # Get the best path from the final population and calculate its fitness value.
     best_path = min(population, key=lambda x: fitness_function(graph, x))
@@ -190,7 +205,7 @@ def genetic_algorithm(graph, origin, destination):
     # Print the cost of the best path and return the best path.
     end_time = time.time()
     print("Tiempo de ejecución: ", end_time - start_time, "segundos")
-    print(f"Cost: {best_cost}")
+    print(f"Cost: {best_cost}")  # Costs is maximum 1 because the fitness function is 1/cost
     return best_path
 
 # The genetic algorithm works best when the selected cities are close together on the map. Choosing cities that are

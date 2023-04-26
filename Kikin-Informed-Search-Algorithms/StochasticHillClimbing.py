@@ -7,10 +7,7 @@ Iván Cruz Ledesma
 Mauricio Pérez Aguirre
 April 26 2023
 v 1.0
-Main file where you can select the algorithm you want to use.
-To use this file, please install our package and run file from console.
-To run file, go to folder where this file is located and run:
-python main.py
+R:: Enrique Ulises Báez Gómez Tagle
 """
 
 from random import shuffle
@@ -58,7 +55,6 @@ def StochasticHillClimbing(graph, heuristcs, origin, destination):
             heuristcs.nodes[current][list(heuristcs.get_neighbors(current))[0]]))
         # limit the frontier to the 10 lowest cost nodes
         frontier = frontier[:10]
-
 
     end_time = time.time()
     print("Tiempo de ejecución: ", end_time - start_time, "segundos")

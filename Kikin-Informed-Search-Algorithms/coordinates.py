@@ -1,3 +1,15 @@
+"""
+From Map to Graph
+Universidad Panamericana Campus Mixcoac
+Inteligencia Artificial
+Enrique Ulises Báez Gómez Tagle
+Iván Cruz Ledesma
+Mauricio Pérez Aguirre
+April 26 2023
+v 1.0
+R: Iván Cruz Ledesma
+"""
+
 import math
 
 cities_coordinates = {
@@ -109,23 +121,16 @@ def get_haversine_distances(goal_city):  # calcula las heuristicas de haversiene
 
 
 def main():
-    # for goal_city in cities:
-    #     print(goal_city)
-
     ciudad = []
     for goal_city in cities:
-        # print(goal_city)
         heuristica = get_haversine_distances(goal_city)
 
-        for city_name, costo in heuristica.items():
+        for city_name, costo in heuristica.items(): # Guarda los nuevos datos en la lista
             ciudad.append(goal_city)
             ciudad.append(city_name)
             ciudad.append(costo)
 
-    # for i in range(0, len(ciudad), 3):
-    #     print(ciudad[i], ciudad[i + 1], ciudad[i + 2])
-
-    with open('heuristics.txt', 'w') as file:
+    with open('heuristics.txt', 'w') as file: # Guarda los datos en un archivo de texto
         for i in range(0, len(ciudad), 3):
             file.write(ciudad[i] + ' ' + ciudad[i + 1] + ' ' + str(ciudad[i + 2]) + '\n')
 

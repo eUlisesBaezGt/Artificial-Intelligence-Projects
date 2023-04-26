@@ -7,10 +7,7 @@ Iván Cruz Ledesma
 Mauricio Pérez Aguirre
 April 26 2023
 v 1.0
-Main file where you can select the algorithm you want to use.
-To use this file, please install our package and run file from console.
-To run file, go to folder where this file is located and run:
-python main.py
+R: Iván Cruz Ledesma
 """
 
 from queue import PriorityQueue
@@ -44,7 +41,8 @@ def WeightedAStarSearch(graph, heuristics, origin, destination):
             new_cost = cost_so_far[current] + weight * \
                 (float(graph.get_weight(current, next_node)))
 
-            # If the neighbor has not been visited yet or the new cost is lower than the current cost, updates the cost and priority for the neighbor.
+            # If the neighbor has not been visited yet or the new cost is lower than the current cost, updates the
+            # cost and priority for the neighbor.
             if next_node not in cost_so_far or new_cost < cost_so_far[next_node]:
                 cost_so_far[next_node] = new_cost
                 priority = new_cost + weight * \
