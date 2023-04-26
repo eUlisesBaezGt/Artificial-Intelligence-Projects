@@ -17,7 +17,6 @@ from queue import PriorityQueue
 import time
 
 
-
 def BeamSearch(graph, heuristics, start, goal):
     start_time = time.time()
     # get the beam width from the user
@@ -48,6 +47,9 @@ def BeamSearch(graph, heuristics, start, goal):
                 while candidate is not None:
                     path.append(candidate)
                     candidate = parents[candidate]
+                end_time = time.time()
+                print("Tiempo de ejecución: ",
+                      end_time - start_time, "segundos")
                 return path[::-1]
 
             # add the current node to the set of explored nodes
@@ -67,4 +69,3 @@ def BeamSearch(graph, heuristics, start, goal):
     end_time = time.time()
     print("Tiempo de ejecución: ", end_time - start_time, "segundos")
     return None
-
