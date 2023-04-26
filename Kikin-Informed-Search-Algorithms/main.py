@@ -17,6 +17,8 @@ python main.py
 # Run on console / Terminal:
 # pip install -i https://test.pypi.org/simple/ KAGraph
 
+# if heuristics.txt is not created, run relaciones.main()
+
 from KAGraph import KAGraph as KAg
 import string
 import AStar as ast
@@ -27,7 +29,7 @@ import SimulatedAnnealing as sa
 import SteepestHillClimbing as stehc
 import StochasticHillClimbing as stochc
 import WeightedAStar as wast
-import genetic as gen
+import Genetic as gen
 from funcs import show_path
 import timeit as t
 
@@ -54,7 +56,7 @@ def main():
     h = KAg.Graph()  # Create a Graph object to store the heuristics
 
     # Kikin-Informed-Search-Algorithms\graph.txt
-    with open("Kikin-Informed-Search-Algorithms\graph.txt") as file:  # Open file that has the graph
+    with open("graph.txt") as file:  # Open file that has the graph
         lines = file.readlines()  # Read all lines
 
     for i in range(1, len(lines)):  # For each line, add an edge to the graph
@@ -114,7 +116,7 @@ def main():
         elif opt == 8:
             path = sa.sa(g, origin)
         elif opt == 9:
-            path = gen.genetic_algorithm(graph, origin, destiny)
+            path = gen.genetic_algorithm(h, origin, destiny)
         elif opt == 10:
             print("Bye!")
         else:
