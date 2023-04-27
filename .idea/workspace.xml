@@ -6,12 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ff5901e7-4816-430d-8ff8-81a14fce5e5a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/AStar.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/AStar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/BranchBound.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/BranchBound.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/Genetic.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/Genetic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/Greedy.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/Greedy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/coordinates.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/coordinates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +90,7 @@
       <workItem from="1682514606073" duration="596000" />
       <workItem from="1682520913982" duration="125000" />
       <workItem from="1682523160813" duration="648000" />
+      <workItem from="1682537427848" duration="585000" />
     </task>
     <servers />
   </component>
@@ -104,6 +99,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Artificial_Intelligence_Projects$relaciones.coverage" NAME="SimulatedAnnealing Coverage Results" MODIFIED="1682445214560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms" />
-    <SUITE FILE_PATH="coverage/Artificial_Intelligence_Projects$main.coverage" NAME="main Coverage Results" MODIFIED="1682471087139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms" />
+    <SUITE FILE_PATH="coverage/Artificial_Intelligence_Projects$main.coverage" NAME="main Coverage Results" MODIFIED="1682538612572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Kikin-Informed-Search-Algorithms" />
   </component>
 </project>
